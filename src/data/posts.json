@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "id": "next.js13-udemy",
+      "title": "Next.js13をUdemyで学ぶ",
+      "content": "Next.js13をUdemyで学びました。",
+      "createdAt": "2024/10/20"
+    },
+    {
+      "id": "json-server",
+      "title": "JSON Serverを使ってAPIを作る",
+      "content": "json-server Node.js CI [!IMPORTANT] Viewing beta v1 documentation usable but expect breaking changes. For stable version, see here👋 Hey! Using React, Vue or Astro? Check my new project MistCSS to write 50% less code.",
+      "createdAt": "2024/10/24"
+    },
+    {
+      "id": "yeah",
+      "title": "Post 3",
+      "content": "This is the content of post 3",
+      "createdAt": "2024/10/27"
+    },
+    {
+      "id": "next.js13-test",
+      "title": "next.js13-udemytest",
+      "content": "testesttestsetestestesうぇいう",
+      "createdAt": "2024-10-20T14:08:25.053Z"
+    },
+    {
+      "id": "test1",
+      "title": "test1",
+      "content": "test1のほんぶん",
+      "createdAt": "2024-10-20T14:16:27.745Z"
+    }
+  ]
+}
