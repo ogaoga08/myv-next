@@ -12,6 +12,7 @@ const ChoiceButton = () => {
 		setCurrentLevel(level);
 	};
 
+
 	const renderButtons = () => {
 		if (currentLevel === 0) {
 			return (
@@ -58,6 +59,12 @@ const ChoiceButton = () => {
 							モモ
 						</Link>
 					</div>
+					<button
+						onClick={() => handleButtonClick(0, 0)}
+						className="m-4 text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
+					>
+						戻る
+					</button>
 				</div>
 			);
 		} else if (currentLevel === 1 && currentIndex === 1) {
@@ -78,6 +85,12 @@ const ChoiceButton = () => {
 							下腹部あたり
 						</Link>
 					</div>
+					<button
+						onClick={() => handleButtonClick(0, 0)}
+						className="m-4 text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
+					>
+						戻る
+					</button>
 				</div>
 			);
 		}
