@@ -148,7 +148,7 @@ const GenreButton = () => {
             </MenuItem>
             <MenuItem>
               <Link
-                href="/yakiniku/shouder/zabuton"
+                href="/yakiniku/shoulder/zabuton"
                 className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
               >
                 ザブトン

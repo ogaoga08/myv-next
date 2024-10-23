@@ -33,12 +33,12 @@ export default async function Home() {
           </h1>
           <GenreButton />
         </div>
-        <div className="pt-6">
+        {/* <div className="pt-6">
           <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
             最近の口コミ
           </h1>
           <ArticleList articles={articles} />
-        </div>
+        </div> */}
       </aside>
     </div>
   );

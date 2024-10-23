@@ -3,6 +3,7 @@
 import { createArticle } from "@/blogAPI";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 function CreateBlogPage() {
   const router = useRouter();
@@ -37,7 +38,7 @@ function CreateBlogPage() {
 
   return (
     <div className="min-h-screen py-8 px-4 md:px-12">
-      <h2 className="text-2xl font-bold mb-4">ブログ新規作成</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-900">口コミ新規投稿</h2>
       <form
         className="bg-slate-200 p-6 rounded shadow-lg"
         onSubmit={handleSubmit}
@@ -70,8 +71,8 @@ function CreateBlogPage() {
         <button
           className={`py-2 px-4 border rounded-md ${
             loading
-              ? "bg-orange-300 cursor-not-allowed"
-              : "bg-orange-400 hover:bg-orange-500"
+              ? "bg-gray-700 cursor-not-allowed"
+              : "bg-red-500 hover:bg-red-600"
           } `}
           disabled={loading}
           type="submit"
