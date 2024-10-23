@@ -43,7 +43,7 @@ function CreateBlogPage() {
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
-          <label className="text-gray-700 text-sm font-bold mb-2">URL</label>
+          <label className="text-gray-700 text-sm font-bold mb-2">部位名</label>
           <input
             type="text"
             className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
@@ -68,10 +68,11 @@ function CreateBlogPage() {
           />
         </div>
         <button
-          className={`py-2 px-4 border rounded-md ${loading
-            ? "bg-orange-300 cursor-not-allowed"
-            : "bg-orange-400 hover:bg-orange-500"
-            } `}
+          className={`py-2 px-4 border rounded-md ${
+            loading
+              ? "bg-orange-300 cursor-not-allowed"
+              : "bg-orange-400 hover:bg-orange-500"
+          } `}
           disabled={loading}
           type="submit"
         >

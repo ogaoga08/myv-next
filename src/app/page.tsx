@@ -3,6 +3,7 @@ import ArticleList from "./components/ArticleList";
 import { getAllArticles } from "@/blogAPI";
 import { supabase } from "@/utils/supabaseClient";
 import ChoiceButton from "./components/ChoiceButton";
+import GenreButton from "./components/GenreButton";
 
 export default async function Home() {
   // const articles = await getAllArticles();
@@ -20,14 +21,24 @@ export default async function Home() {
         </div>
       </section>
       <aside className="w-full md:w-1/3 flex flex-col px-3">
-        <ChoiceButton />
-        <div className="border-b">
-          <h1 className="font-bold text-gray-900 pt-6 m-2 md:text-2xl text-left">
+        <div className="pt-6 ">
+          <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
+            部位の場所で探す
+          </h1>
+          <ChoiceButton />
+        </div>
+        <div className="pt-6 ">
+          <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
+            特徴で探す
+          </h1>
+          <GenreButton />
+        </div>
+        <div className="pt-6">
+          <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
             最近の口コミ
           </h1>
+          <ArticleList articles={articles} />
         </div>
-
-        <ArticleList articles={articles} />
       </aside>
     </div>
   );
