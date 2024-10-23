@@ -13,7 +13,7 @@ export const getAllArticles = async (): Promise<Article[]> => {
   }
 
   // ローディングを入れる
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  // await new Promise((resolve) => setTimeout(resolve, 1000));
 
   // resはオブジェクトなので、JSON形式にシリアライズ(文字列化)する
   const articles = await res.json();
@@ -34,7 +34,7 @@ export const getDetailArticle = async (id: string): Promise<Article> => {
     throw new Error("Error");
   }
 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  // await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const article = await res.json();
   return article;
@@ -60,7 +60,7 @@ export const createArticle = async (
     throw new Error("Error");
   }
 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  // await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const newArticle = await res.json();
   return newArticle;
@@ -76,7 +76,7 @@ export const deleteArticle = async (id: string): Promise<Article> => {
     throw new Error("Error");
   }
 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  // await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const deleteArticle = await res.json();
   return deleteArticle;
