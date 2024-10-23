@@ -24,7 +24,7 @@ const parts = [
     softness: 4,
     fat: 4,
     rare: 4,
-    engname: "chuck-flap",
+    engname: "misuji",
   },
   {
     name: "肩サンカク",
@@ -33,7 +33,7 @@ const parts = [
     softness: 3,
     fat: 3,
     rare: 3,
-    engname: "shoulder-triangle",
+    engname: "katasankaku",
   },
   {
     name: "ザブトン",
@@ -87,7 +87,7 @@ const parts = [
     softness: 4,
     fat: 4,
     rare: 4,
-    engname: "short-rib-(karubi)",
+    engname: "short-rib(karubi)",
   },
   {
     name: "カイノミ",
@@ -105,7 +105,7 @@ const parts = [
     softness: 5,
     fat: 5,
     rare: 3,
-    engname: "triangle-rib",
+    engname: "sankakubara",
   },
   {
     name: "ランプ",
@@ -123,7 +123,7 @@ const parts = [
     softness: 3,
     fat: 3,
     rare: 4,
-    engname: "top-sirloin-cap",
+    engname: "ichibo",
   },
   {
     name: "シキンボ",
@@ -132,7 +132,7 @@ const parts = [
     softness: 3,
     fat: 2,
     rare: 3,
-    engname: "knuckle",
+    engname: "shikinbo",
   },
   {
     name: "シンシン",
@@ -141,7 +141,115 @@ const parts = [
     softness: 5,
     fat: 2,
     rare: 3,
-    engname: "eye-of-round",
+    engname: "shinshin",
+  },
+  {
+    name: "ハツ",
+    descr:
+      "牛の心臓。しっかりとした歯応えが特徴。脂肪が少なく、あっさりとした味わいが楽しめる。鉄分が豊富で栄養価が高い。",
+    softness: 1,
+    fat: 1,
+    rare: 5,
+    engname: "hatsu",
+  },
+  {
+    name: "ツラミ",
+    descr:
+      "牛のほほ肉で、しっかりとした歯応えが特徴。脂肪が少なく、あっさりとした味わいが楽しめる。",
+    softness: 2,
+    fat: 2,
+    rare: 3,
+    engname: "tsurami",
+  },
+  {
+    name: "ウルテ",
+    descr:
+      "牛の喉の気管軟骨。非常に歯応えがあり、独特の食感が楽しめる。脂肪が少なく、ヘルシー。",
+    softness: 1,
+    fat: 1,
+    rare: 3,
+    engname: "urute",
+  },
+  {
+    name: "シビレ",
+    descr:
+      "牛の膵臓。ぷりぷりとした食感が特徴。脂肪が適度にあり、旨味が強い。焼きすぎないように注意。",
+    softness: 3,
+    fat: 3,
+    rare: 3,
+    engname: "shibire",
+  },
+  {
+    name: "センマイ",
+    descr:
+      "牛の第三胃。しっかりとした歯応えが特徴。脂肪が少なく、あっさりとした味わい。独特の風味が楽しめる。",
+    softness: 1,
+    fat: 1,
+    rare: 4,
+    engname: "senmai",
+  },
+  {
+    name: "ハチノス",
+    descr:
+      "牛の第二胃。しっかりとした歯応えが特徴。脂肪が少なく、さっぱりとした味わい。",
+    softness: 1,
+    fat: 1,
+    rare: 3,
+    engname: "hachinosu",
+  },
+  {
+    name: "ミノ",
+    descr:
+      "牛の第一胃。しっかりとした歯応えが特徴。脂肪が少なく、さっぱりとした味わい。焼き過ぎに注意。",
+    softness: 2,
+    fat: 2,
+    rare: 3,
+    engname: "mino",
+  },
+  {
+    name: "ハラミ(サガリ)",
+    descr:
+      "牛の横隔膜の一部で、柔らかく歯応えがある。脂肪が適度にあり、ジューシーで濃厚な味わい。",
+    softness: 3,
+    fat: 3,
+    rare: 4,
+    engname: "harami(sagari)",
+  },
+  {
+    name: "レバー",
+    descr:
+      "牛の肝臓。ふわふわとした食感が特徴。ビタミンAや鉄分が豊富で栄養価が高い。軽く炙る程度で食べるのが美味しい。",
+    softness: 5,
+    fat: 2,
+    rare: 4,
+    engname: "liver",
+  },
+  {
+    name: "ヒモ(マルチョウ)",
+    descr:
+      "牛の小腸。脂とぷりぷりとした食感が特徴。非常にジューシーで、焼肉では人気の部位。",
+    softness: 4,
+    fat: 5,
+    rare: 3,
+    engname: "himo(marucho)",
+  },
+  {
+    name: "シマチョウ",
+    descr:
+      "牛の大腸。しっかりとした歯応えが特徴。脂が多く、濃厚な旨味が楽しめる。",
+    softness: 3,
+    fat: 5,
+    rare: 3,
+    engname: "shimacho",
+  },
+  {
+    name: "マメ",
+    descr:
+      "牛の腎臓。しっかりとした歯応えが特徴。脂肪が適度にあり、旨味が強い。焼き過ぎに注意。",
+    softness: 2,
+    fat: 3,
+    rare: 3,
+    engname: "mame",
   },
 ];
 
