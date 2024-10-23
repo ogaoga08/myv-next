@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import BackButton from "./BackButton";
 
 const ChoiceButton = () => {
   const pathname = usePathname();
@@ -14,7 +15,7 @@ const ChoiceButton = () => {
         <div className="my-4 flex flex-wrap justify-center">
           <div className="m-4 flex-1 min-w-[150px]">
             <Link
-              href="#"
+              href="/yakiniku/head-neck"
               className="block text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
             >
               頭から首
@@ -22,7 +23,7 @@ const ChoiceButton = () => {
           </div>
           <div className="m-4 flex-1 min-w-[150px]">
             <Link
-              href="#"
+              href="/yakiniku/shoulder"
               className="block text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
             >
               肩
@@ -30,7 +31,7 @@ const ChoiceButton = () => {
           </div>
           <div className="m-4 flex-1 min-w-[150px]">
             <Link
-              href="#"
+              href="/yakiniku/back"
               className="block text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
             >
               背中
@@ -38,7 +39,7 @@ const ChoiceButton = () => {
           </div>
           <div className="m-4 flex-1 min-w-[150px]">
             <Link
-              href="#"
+              href="/yakiniku/chest-belly"
               className="block text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
             >
               胸から腹
@@ -46,18 +47,55 @@ const ChoiceButton = () => {
           </div>
           <div className="m-4 flex-1 min-w-[150px]">
             <Link
-              href="#"
+              href="/yakiniku/round"
               className="block text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
             >
               モモ
             </Link>
           </div>
-          <button
-            onClick={() => router.back()}
-            className="m-4 text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
-          >
-            戻る
-          </button>
+          <div className="m-4 flex-1 min-w-[150px]">
+            <BackButton />
+          </div>
+        </div>
+      );
+    case "/yakiniku/back":
+      return (
+        <div className="my-4 flex flex-wrap justify-center">
+          <div className="m-4 flex-1 min-w-[150px]">
+            <Link
+              href="/yakiniku/back/sirloin"
+              className="block text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
+            >
+              サーロイン
+            </Link>
+          </div>
+          <div className="m-4 flex-1 min-w-[150px]">
+            <Link
+              href="/yakiniku/back/ribeye"
+              className="block text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
+            >
+              リブロース
+            </Link>
+          </div>
+          <div className="m-4 flex-1 min-w-[150px]">
+            <Link
+              href="/yakiniku/back/tenderloin"
+              className="block text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
+            >
+              ヒレ
+            </Link>
+          </div>
+          <div className="m-4 flex-1 min-w-[150px]">
+            <Link
+              href="/yakiniku/back/chateaubriand"
+              className="block text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
+            >
+              シャトーブリアン
+            </Link>
+          </div>
+          <div className="m-4 flex-1 min-w-[150px]">
+            <BackButton />
+          </div>
         </div>
       );
     case "/offal":
@@ -87,14 +125,12 @@ const ChoiceButton = () => {
               下腹部あたり
             </Link>
           </div>
-          <button
-            onClick={() => router.back()}
-            className="m-4 text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-yellow-950 hover:opacity-75"
-          >
-            戻る
-          </button>
+          <div className="m-4 flex-1 min-w-[150px]">
+            <BackButton />
+          </div>
         </div>
       );
+
     default:
       return (
         <div className="my-4 flex flex-wrap justify-center">
