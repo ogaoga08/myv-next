@@ -32,7 +32,7 @@ function CreateBlogPage() {
     }); //リアルタイムで更新されがだからSSR
 
     setLoading(false);
-    router.push("/");
+    router.back();
     router.refresh();
   };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import ReviewButton from "./components/ReviewButton";
 
 const Header = () => {
   return (
@@ -11,6 +12,9 @@ const Header = () => {
         <h1 className="text-2xl font-extrabold">
           <Link href="/">myv</Link>
         </h1>
+      </div>
+      <div>
+        <ReviewButton />
       </div>
     </header>
   );

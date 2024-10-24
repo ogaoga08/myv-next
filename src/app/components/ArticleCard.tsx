@@ -20,6 +20,7 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
   return (
     <article className="shadow my-4 flex flex-col" key={article.id}>
       <div className="bg-white flex flex-col justify-start p-6 rounded-md">
+        <p className="text-sm pb-3 text-sky-800">/{article.id}</p>
         <Link
           href={`/articles/${article.id}`}
           className="text-slate-900 text-2xl font-bold hover:text-gray-700 pb-1"
