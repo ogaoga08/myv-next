@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 type DeleteButtonProps = {
-  id: string;
+  createdAt: string;
 };
 
-const DeleteButton = ({ id }: DeleteButtonProps) => {
+const DeleteButton = ({ createdAt }: DeleteButtonProps) => {
   const router = useRouter();
 
   const handleDelete = async () => {
@@ -16,7 +16,7 @@ const DeleteButton = ({ id }: DeleteButtonProps) => {
 
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-    await fetch(`${API_URL}/api/blog/${id}`, {
+    await fetch(`${API_URL}/api/blog/${createdAt}`, {
       method: "DELETE",
     }); //リアルタイムで更新されがだからSSR
 

@@ -4,6 +4,7 @@ import { createArticle } from "@/blogAPI";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import BackButton from "@/app/components/BackButton";
 
 function CreateBlogPage() {
   const router = useRouter();
@@ -40,7 +41,7 @@ function CreateBlogPage() {
     <div className="min-h-screen py-8 px-4 md:px-12">
       <h2 className="text-2xl font-bold mb-4 text-gray-900">口コミ新規投稿</h2>
       <form
-        className="bg-slate-200 p-6 rounded shadow-lg"
+        className="bg-slate-100 p-6 rounded shadow-lg"
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
@@ -68,17 +69,22 @@ function CreateBlogPage() {
             onChange={(e) => setContent(e.target.value)}
           />
         </div>
-        <button
-          className={`py-2 px-4 border rounded-md ${
-            loading
-              ? "bg-gray-700 cursor-not-allowed"
-              : "bg-red-500 hover:bg-red-600"
-          } `}
-          disabled={loading}
-          type="submit"
-        >
-          投稿
-        </button>
+        <div className="flex items-center">
+          <button
+            className={`py-2 px-4 border rounded-md ${
+              loading
+                ? "bg-gray-700 cursor-not-allowed"
+                : "bg-red-500 hover:bg-red-600"
+            } `}
+            disabled={loading}
+            type="submit"
+          >
+            投稿
+          </button>
+          <div className="mx-4">
+            <BackButton />
+          </div>
+        </div>
       </form>
     </div>
   );
