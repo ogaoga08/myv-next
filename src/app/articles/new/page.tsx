@@ -50,6 +50,7 @@ function CreateBlogPage() {
             type="text"
             className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
             onChange={(e) => setId(e.target.value)}
+            required
           />
         </div>
         <div className="mb-4">
@@ -60,6 +61,7 @@ function CreateBlogPage() {
             type="text"
             className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
             onChange={(e) => setTitle(e.target.value)}
+            required
           />
         </div>
         <div className="mb-4">
@@ -67,6 +69,7 @@ function CreateBlogPage() {
           <textarea
             className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
             onChange={(e) => setContent(e.target.value)}
+            required
           />
         </div>
         <div className="flex items-center">

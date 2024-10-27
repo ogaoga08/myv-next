@@ -13,9 +13,6 @@ const Header = () => {
           <Link href="/">myv</Link>
         </h1>
       </div>
-      <div>
-        <ReviewButton />
-      </div>
     </header>
   );
 };

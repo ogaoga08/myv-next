@@ -7,6 +7,7 @@ import parts from "@/data/parts";
 import { usePathname } from "next/navigation";
 import Loading from "@/app/loading";
 import BackButton from "@/app/components/BackButton";
+import ReviewButton from "@/app/components/ReviewButton";
 
 const Back = () => {
   const [articles, setArticles] = useState([]);
@@ -57,12 +58,17 @@ const Back = () => {
             <li>脂肪: {part.fat}</li>
             <li>希少度: {part.rare}</li>
           </ul>
-          <div className="mt-4">
-            <BackButton />
-          </div>
         </div>
       </section>
       <aside className="w-full md:w-1/3 flex flex-col px-3">
+        <div className="my-4 flex justify-center space-x-4">
+          <div className="flex-1 min-w-[150px]">
+            <ReviewButton />
+          </div>
+          <div className="flex-1 min-w-[150px]">
+            <BackButton />
+          </div>
+        </div>
         <h1 className="font-bold text-gray-900 pt-6 m-2 md:text-2xl text-left">
           みんなの口コミ
         </h1>
