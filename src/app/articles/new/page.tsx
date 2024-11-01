@@ -1,17 +1,23 @@
 "use client";
 
-import { createArticle } from "@/blogAPI";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import React, { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import BackButton from "@/app/components/BackButton";
 
 function CreateBlogPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [id, setId] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const name = searchParams?.get("name");
+    if (name) {
+      setId(name);
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     // リロードを防ぐ
@@ -48,9 +54,11 @@ function CreateBlogPage() {
           <label className="text-gray-700 text-sm font-bold mb-2">部位名</label>
           <input
             type="text"
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight"
+            value={id}
             onChange={(e) => setId(e.target.value)}
             required
+            disabled
           />
         </div>
         <div className="mb-4">
@@ -82,7 +90,7 @@ function CreateBlogPage() {
             disabled={loading}
             type="submit"
           >
-            投稿
+            {loading ? "投稿中..." : "投稿"}
           </button>
           <div className="mx-4">
             <BackButton />

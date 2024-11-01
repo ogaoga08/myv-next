@@ -1,14 +1,22 @@
-import Link from "next/link";
 import React from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 const ReviewButton = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const name = pathname ? pathname.split("/").pop() : "";
+
+  const handleClick = () => {
+    router.push(`/articles/new?name=${name}`);
+  };
+
   return (
-    <Link
-      href="/articles/new"
-      className="block text-center bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 hover:opacity-75"
+    <button
+      onClick={handleClick}
+      className="text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-red-900 hover:opacity-75"
     >
-      口コミを書く
-    </Link>
+      レビューを書く
+    </button>
   );
 };
 
