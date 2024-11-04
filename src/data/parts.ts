@@ -251,15 +251,6 @@ const parts = [
     rare: 3,
     engname: "mame",
   },
-  {
-    name: "キクアブラ",
-    descr:
-      "豚の小腸周りの脂身。脂が多く、口の中でとろけるような食感が楽しめる。焼肉ではタレとの相性が良い。",
-    softness: 4,
-    fat: 5,
-    rare: 3,
-    engname: "kikuabura",
-  },
 ];
 
 export default parts;
