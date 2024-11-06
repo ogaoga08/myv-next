@@ -7,12 +7,10 @@ import GenreButton from "./components/GenreButton";
 import SearchForm from "./components/SearchForm";
 
 export default async function Home() {
-  // const articles = await getAllArticles();
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const res = await fetch(`${API_URL}/api/blog`, { cache: "no-store" }); //リアルタイムで更新されがだからSSR
   const articles = await res.json();
-  // console.log(articles);
 
   return (
     <div className="md:flex">
