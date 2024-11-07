@@ -1,5 +1,5 @@
 import Search from "@/app/ui/search";
-import FoodsTable from "@/components/foods/table";
+import FoodsTable from "@/app/components/foods/table";
 
 export default async function Page({
   searchParams,

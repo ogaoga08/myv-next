@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { formatCurrency } from "@/app/lib/utils";
-import { fetchFilteredFoods } from "@/app/lib/data";
+import { fetchFilteredFoods } from "@/data/data";
 
 export default async function FoodsTable({ query }: { query: string }) {
   const foods = await fetchFilteredFoods(query);
@@ -25,9 +24,7 @@ export default async function FoodsTable({ query }: { query: string }) {
                 </div>
                 <div className="flex w-full items-center justify-between pt-4">
                   <div>
-                    <p className="text-xl font-medium">
-                      {formatCurrency(food.price)}
-                    </p>
+                    <p className="text-xl font-medium"></p>
                     <p>{food.calories} calories</p>
                   </div>
                 </div>
@@ -65,9 +62,7 @@ export default async function FoodsTable({ query }: { query: string }) {
                   <td className="whitespace-nowrap px-3 py-3">
                     {food.category}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
-                    {formatCurrency(food.price)}
-                  </td>
+                  <td className="whitespace-nowrap px-3 py-3"></td>
                   <td className="whitespace-nowrap px-3 py-3">
                     {food.calories} calories
                   </td>
