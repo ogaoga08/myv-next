@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ArticleList from "../../../components/ArticleList";
-import parts from "@/data/parts";
+import parts from "@/data/partsData";
 import { usePathname } from "next/navigation";
 import Loading from "@/app/loading";
 import BackButton from "@/app/components/BackButton";

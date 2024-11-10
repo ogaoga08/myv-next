@@ -1,5 +1,5 @@
 import Search from "@/app/ui/search";
-import FoodsTable from "@/app/components/foods/table";
+import PartsTable from "@/app/components/foods/table";
 
 export default async function Page({
   searchParams,
@@ -16,7 +16,7 @@ export default async function Page({
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search foods..." />
       </div>
-      <FoodsTable query={query} />
+      <PartsTable query={query} />
     </div>
   );
 }
