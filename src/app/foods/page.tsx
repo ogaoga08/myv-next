@@ -13,8 +13,8 @@ export default async function Page({
 
   return (
     <div className="w-full px-10">
-      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        <Search placeholder="Search foods..." />
+      <div className="mt-4 flex items-center justify-between md:mt-8">
+        <Search placeholder="部位名で検索..." />
       </div>
       <PartsTable query={query} />
     </div>

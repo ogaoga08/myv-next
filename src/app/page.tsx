@@ -5,12 +5,23 @@ import { supabase } from "@/utils/supabaseClient";
 import ChoiceButton from "./components/ChoiceButton";
 import GenreButton from "./components/GenreButton";
 import SearchForm from "./components/SearchForm";
+import Search from "./ui/search";
+import PartsTable from "./components/foods/table";
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
+}) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const res = await fetch(`${API_URL}/api/blog`, { cache: "no-store" }); //リアルタイムで更新されがだからSSR
   const articles = await res.json();
+
+  const query = searchParams?.query || "";
 
   return (
     <div className="md:flex">
@@ -20,8 +31,9 @@ export default async function Home() {
         </div>
       </section>
       <aside className="w-full md:w-1/3 flex flex-col px-3">
-        <div className="pt-6">
-          <SearchForm />
+        <div className="pt-4">
+          <Search placeholder="部位名で検索..." />
+          <PartsTable query={query} />
         </div>
         <div className="pt-6">
           <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
