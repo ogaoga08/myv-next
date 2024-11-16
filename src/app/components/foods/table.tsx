@@ -9,7 +9,7 @@ export default async function PartsTable({ query }: { query: string }) {
   }
 
   return (
-    <div className="rounded-lg bg-gray-50 p-2 shadow-md">
+    <div className="flex-1 rounded-lg bg-gray-50 p-2 shadow-md overflow-y-auto">
       {parts?.map((part) => (
         <div
           key={part.engname}

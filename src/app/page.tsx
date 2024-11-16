@@ -4,7 +4,6 @@ import { getAllArticles } from "@/blogAPI";
 import { supabase } from "@/utils/supabaseClient";
 import ChoiceButton from "./components/ChoiceButton";
 import GenreButton from "./components/GenreButton";
-import SearchForm from "./components/SearchForm";
 import Search from "./ui/search";
 import PartsTable from "./components/foods/table";
 
