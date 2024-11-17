@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { fetchFilteredParts } from "@/data/parts";
+import Link from "next/link";
 
 export default async function PartsTable({ query }: { query: string }) {
   const parts = await fetchFilteredParts(query);
@@ -11,9 +12,10 @@ export default async function PartsTable({ query }: { query: string }) {
   return (
     <div className="flex-1 rounded-lg bg-gray-50 p-2 shadow-md overflow-y-auto">
       {parts?.map((part) => (
-        <div
+        <Link
+          href={part.route}
           key={part.engname}
-          className=" w-full bg-gray-50 p-3 flex items-center justify-between"
+          className=" w-full bg-gray-50 p-3 flex items-center justify-between hover:bg-gray-200 rounded-md"
         >
           <div>
             <div className="flex items-center text-sm">
@@ -21,7 +23,7 @@ export default async function PartsTable({ query }: { query: string }) {
               <p className="font text-sm text-gray-500 mx-2">{part.engname}</p>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
