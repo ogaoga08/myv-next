@@ -48,7 +48,7 @@ const Back = () => {
         <div className="bg-white shadow-md rounded mt-4 w-full flex justify-center items-center">
           <Image src="/cattle_y_head.png" alt="logo" width={700} height={612} />
         </div>
-        <div className="bg-white shadow-md rounded p-4 mb-6 mt-4 w-full">
+        <div className="bg-white shadow-md rounded p-4 mt-4 w-full">
           <h1 className="font-bold text-gray-950 md:text-2xl mb-2">
             {part.name}
           </h1>
@@ -61,18 +61,23 @@ const Back = () => {
         </div>
       </section>
       <aside className="w-full md:w-1/3 flex flex-col px-3">
-        <div className="my-4 flex justify-center space-x-4">
-          <div className="flex-1 min-w-[150px]">
-            <ReviewButton />
+        <div className="pt-3">
+          <h1 className="font-bold m-2 text-teal-950 md:text-xl text-left">
+            /焼肉/頭から首/{part.name}
+          </h1>
+          <div className="my-6 flex justify-center space-x-4">
+            <div className="flex-1 min-w-[150px]">
+              <ReviewButton />
+            </div>
+            <div className="flex-1 min-w-[150px]">
+              <BackButton />
+            </div>
           </div>
-          <div className="flex-1 min-w-[150px]">
-            <BackButton />
-          </div>
+          <h1 className="font-bold text-gray-900 pt-6 m-2 md:text-2xl text-left">
+            みんなの口コミ
+          </h1>
+          <ArticleList articles={articles} />
         </div>
-        <h1 className="font-bold text-gray-900 pt-6 m-2 md:text-2xl text-left">
-          みんなの口コミ
-        </h1>
-        <ArticleList articles={articles} />
       </aside>
     </div>
   );

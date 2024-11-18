@@ -13,9 +13,9 @@ const ReviewButton = () => {
   return (
     <button
       onClick={handleClick}
-      className="text-center bg-red-700 text-white font-bold py-2 px-4 rounded hover:bg-red-900 hover:opacity-75"
+      className="text-center bg-red-700 text-white font-bold py-2 px-4 mx-2 rounded hover:bg-red-900 hover:opacity-75"
     >
-      レビューを書く
+      口コミを書く
     </button>
   );
 };

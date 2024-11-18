@@ -31,7 +31,7 @@ export default async function Home({
       </section>
       <aside className="w-full md:w-1/3 flex flex-col px-3">
         <div className="pt-4">
-          <Search placeholder="部位名で検索..." />
+          <Search placeholder="部位名・キーワードで検索..." />
           <PartsTable query={query} />
         </div>
         <div className="pt-6">
