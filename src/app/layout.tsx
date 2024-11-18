@@ -19,6 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+      ></meta>
       <body className=" bg-slate-200 text-slate-50">
         <div className="flex flex-col min-h-screen">
           <Header />
