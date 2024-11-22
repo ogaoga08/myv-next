@@ -28,7 +28,7 @@ export default async function Home({
       <section className="w-full md:w-2/3 flex flex-col items-center px-3 md:pl-6">
         <div className="bg-white shadow-md rounded mt-4 w-full flex justify-center items-center">
           {/* <Image src="/cattle.png" alt="logo" width={700} height={612} /> */}
-          <ImageComponent />
+          <ImageComponent src="/cattle.png" />
         </div>
       </section>
       <aside className="w-full md:w-1/3 flex flex-col px-3">
