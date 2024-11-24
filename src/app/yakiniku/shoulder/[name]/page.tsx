@@ -9,6 +9,7 @@ import Loading from "@/app/loading";
 import BackButton from "@/app/components/BackButton";
 import ReviewButton from "@/app/components/ReviewButton";
 import { ImageComponent } from "@/app/components/ImageComponent";
+import RatingStar from "@/app/components/RatingStar";
 
 const Back = () => {
   const [articles, setArticles] = useState([]);
@@ -55,9 +56,24 @@ const Back = () => {
           </h1>
           <p className="text-gray-800">{part.descr}</p>
           <ul className="font-bold text-teal-950 my-2">
-            <li>柔らかさ: {part.softness}</li>
-            <li>脂肪: {part.fat}</li>
-            <li>希少度: {part.rare}</li>
+            <li className="flex justify-between items-center my-2">
+              <div className="w-1/5">柔らかさ</div>
+              <div className="w-4/5">
+                <RatingStar props={part.softness} />
+              </div>
+            </li>
+            <li className="flex justify-between items-center my-2">
+              <div className="w-1/5">脂肪</div>
+              <div className="w-4/5">
+                <RatingStar props={part.fat} />
+              </div>
+            </li>
+            <li className="flex justify-between items-center my-2">
+              <div className="w-1/5">希少度</div>
+              <div className="w-4/5">
+                <RatingStar props={part.rare} />
+              </div>
+            </li>
           </ul>
         </div>
       </section>
