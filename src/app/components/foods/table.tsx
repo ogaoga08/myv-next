@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { fetchFilteredParts } from "@/data/parts";
 import Link from "next/link";
 
@@ -7,6 +6,18 @@ export default async function PartsTable({ query }: { query: string }) {
 
   if (!query) {
     return null; // queryが空の場合は何も表示しない
+  }
+
+  if (parts.length === 0) {
+    return (
+      <div className="relative flex flex-1 m-0">
+        <div className="absolute w-full rounded-lg bg-gray-50 p-2 shadow-md z-10 max-h-64 overflow-y-auto">
+          <small className="font-medium m-2 text-slate-800">
+            🐮 &lt; 部位を見つけられませんでした...
+          </small>
+        </div>
+      </div>
+    );
   }
 
   return (
