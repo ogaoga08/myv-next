@@ -18,12 +18,12 @@ export default function Search({ placeholder }: { placeholder: string }) {
     } else {
       params.delete("query");
     }
-    scrollPosition.current = window.scrollY; // 現在のスクロール位置を保存
+    scrollPosition.current = window.scrollY; //useRefでスクロール位置を保持
     replace(`${pathname}?${params.toString()}`);
   }, 300);
 
   useEffect(() => {
-    window.scrollTo(0, scrollPosition.current); // スクロール位置を復元
+    window.scrollTo(0, scrollPosition.current); //useRefで保持したスクロール位置を再レンダリング後に渡してスクロール位置を保持
   }, [searchParams]);
 
   return (
