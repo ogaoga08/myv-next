@@ -32,7 +32,8 @@ export default function Search({ placeholder }: { placeholder: string }) {
         Search
       </label>
       <input
-        className="block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 text-slate-800 shadow-sm"
+        className="block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500 text-slate-800 shadow-sm
+  search-cancel:appearance-none search-cancel:w-4 search-cancel:h-4 search-cancel:bg-no-repeat search-cancel:bg-center search-cancel:bg-[url('/times-solid.svg')]"
         placeholder={placeholder}
         onChange={(e) => handleSearch(e.target.value)}
         defaultValue={searchParams ? searchParams.get("query")?.toString() : ""}
@@ -40,6 +41,11 @@ export default function Search({ placeholder }: { placeholder: string }) {
         style={{ fontSize: "16px" }}
       />
       <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+      <img
+        src="/times-solid.svg"
+        className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 cursor-pointer"
+        onClick={() => handleSearch("")}
+      />
     </div>
   );
 }
