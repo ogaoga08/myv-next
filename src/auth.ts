@@ -2,6 +2,9 @@ import NextAuth, { NextAuthConfig } from "next-auth";
 import Github from "next-auth/providers/github";
 
 export const config: NextAuthConfig = {
+  theme: {
+    logo: "https://next-auth.js.org/img/logo/logo-sm.png",
+  },
   providers: [
     Github({
       clientId: process.env.GITHUB_ID,

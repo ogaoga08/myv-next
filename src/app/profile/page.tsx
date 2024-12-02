@@ -1,20 +1,21 @@
 import React from "react";
 import { auth } from "@/auth";
-import Link from "next/link";
+import CustomLink from "../components/custom-link";
 
 const page = async () => {
   const session = await auth();
+
   return (
     <div className="flex flex-col gap-6 text-slate-900 m-5">
       <h1 className="text-3xl font-bold">🚀NextAuth.js Tutorial</h1>
       <div>
-        <Link href="/server-example" className="underline">
+        <CustomLink href="/server-example" className="underline">
           サーバー
-        </Link>
+        </CustomLink>
         と
-        <Link href="/client-example" className="underline">
+        <CustomLink href="/client-example" className="underline">
           クライアント
-        </Link>
+        </CustomLink>
         の例を見て、ページを保護してセッションデータを取得する方法を確認してください。
       </div>
       <div className="flex flex-col rounded-lg bg-neutral-100 shadow">

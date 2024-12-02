@@ -12,7 +12,7 @@ import { auth } from "@/auth";
 
 export default async function UserButton() {
   const session = await auth();
-  if (!session?.user) return <SignIn provider="github" />; //sessionのuserがない場合はSignInを返す
+  if (!session?.user) return <SignIn />; //sessionのuserがない場合はSignInを返す
 
   return (
     <div className="flex gap-2 items-center">
