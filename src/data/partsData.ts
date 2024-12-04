@@ -97,7 +97,7 @@ const parts = [
     fat: 4,
     rare: 4,
     engname: "short-rib(karubi)",
-    route: "/yakiniku/chest-belly/short-rib",
+    route: "/yakiniku/chest-belly/short-rib(karubi)",
   },
   {
     name: "カイノミ",
