@@ -1,8 +1,13 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
 import Github from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export const config: NextAuthConfig = {
+  adapter: PrismaAdapter(prisma),
   theme: {
     logo: "https://next-auth.js.org/img/logo/logo-sm.png",
   },
@@ -21,7 +26,7 @@ export const config: NextAuthConfig = {
     authorized({ request, auth }) {
       try {
         const { pathname } = request.nextUrl;
-        if (pathname === "/protected-page") {
+        if (pathname === "/articles/new") {
           return !!auth; //強制的にオブジェクトの値を真偽値に変換(authが存在する→true, authが存在しない→false)
         }
         return true;
