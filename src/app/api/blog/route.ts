@@ -15,11 +15,11 @@ export async function GET(req: Request, res: NextApiResponse) {
 
 export async function POST(req: Request, res: NextApiResponse) {
   // bodyから取ってこれないので、req.json()を使う
-  const { id, title, content } = await req.json();
+  const { name, title, content } = await req.json();
 
   const { data, error } = await supabase
     .from("posts")
-    .insert([{ id, title, content, createdAt: new Date().toISOString() }]);
+    .insert([{ name, title, content, createdAt: new Date().toISOString() }]);
 
   if (error) {
     return NextResponse.json(error);

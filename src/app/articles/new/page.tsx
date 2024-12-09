@@ -7,7 +7,8 @@ import BackButton from "@/app/components/BackButton";
 function CreateBlogPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [id, setId] = useState<string>("");
+  // const [id, setId] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -15,7 +16,7 @@ function CreateBlogPage() {
   useEffect(() => {
     const name = searchParams?.get("name");
     if (name) {
-      setId(name);
+      setName(name);
     }
   }, [searchParams]);
 
@@ -35,7 +36,7 @@ function CreateBlogPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id, title, content }),
+      body: JSON.stringify({ name, title, content }),
     }); //リアルタイムで更新されがだからSSR
 
     setLoading(false);
@@ -55,8 +56,8 @@ function CreateBlogPage() {
           <input
             type="text"
             className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
             disabled
           />

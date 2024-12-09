@@ -26,9 +26,9 @@ export const config: NextAuthConfig = {
     authorized({ request, auth }) {
       try {
         const { pathname } = request.nextUrl;
-        if (pathname === "/articles/new") {
-          return !!auth; //強制的にオブジェクトの値を真偽値に変換(authが存在する→true, authが存在しない→false)
-        }
+        // if (pathname === "/articles/new") {
+        //   return !!auth; //強制的にオブジェクトの値を真偽値に変換(authが存在する→true, authが存在しない→false)
+        // }
         return true;
       } catch (err) {
         console.log(err);

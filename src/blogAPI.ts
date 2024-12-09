@@ -21,7 +21,7 @@ export const getAllArticles = async (): Promise<Article[]> => {
 };
 
 // 詳細データ取得API
-export const getDetailArticle = async (id: string): Promise<Article> => {
+export const getDetailArticle = async (id: number): Promise<Article> => {
   const res = await fetch(`http://localhost:3001/posts/${id}`, {
     next: { revalidate: 60 },
   }); //そんなに変更されないのでISR(60秒間隔)
@@ -42,7 +42,6 @@ export const getDetailArticle = async (id: string): Promise<Article> => {
 
 // 記事作成API
 export const createArticle = async (
-  id: string,
   title: string,
   content: string
 ): Promise<Article> => {
@@ -53,7 +52,7 @@ export const createArticle = async (
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ id, title, content, createdAt: currentDatetime }),
+    body: JSON.stringify({ title, content, createdAt: currentDatetime }),
   }); //POSTメソッド
 
   if (!res.ok) {
@@ -67,7 +66,7 @@ export const createArticle = async (
 };
 
 // 削除API
-export const deleteArticle = async (id: string): Promise<Article> => {
+export const deleteArticle = async (id: number): Promise<Article> => {
   const res = await fetch(`http://localhost:3001/posts/${id}`, {
     method: "DELETE",
   });

@@ -1,4 +1,4 @@
-// DB全件取得API
+// DB1件取得API
 import { supabase } from "@/utils/supabaseClient";
 import { NextApiRequest, NextApiResponse } from "next";
 import { notFound } from "next/navigation";
