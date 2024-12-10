@@ -13,12 +13,12 @@ export const config: NextAuthConfig = {
   },
   providers: [
     Github({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: process.env.AUTH_GITHUB_ID,
+      clientSecret: process.env.AUTH_GITHUB_SECRET,
     }),
     Google({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
   ],
   basePath: "/api/auth",
@@ -27,15 +27,16 @@ export const config: NextAuthConfig = {
       try {
         const { pathname } = request.nextUrl;
         // if (pathname === "/articles/new") {
-        //   return !!auth; //強制的にオブジェクトの値を真偽値に変換(authが存在する→true, authが存在しない→false)
+        //   return !!auth;
         // }
         return true;
       } catch (err) {
-        console.log(err);
+        console.log("Authorization error:", err);
+        return false;
       }
     },
     jwt({ token, trigger, session }) {
-      if (trigger === "update") token.name = session.user.name; //ユーザーの認証状態を更新する際は、usernameを最新の状態に更新する
+      if (trigger === "update") token.name = session.user.name;
       return token;
     },
   },
