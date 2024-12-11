@@ -5,6 +5,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { Noto_Sans_JP } from "next/font/google";
+
+const fontNoto = Noto_Sans_JP({ subsets: ["latin"] });
 
 // メタ情報
 export const metadata: Metadata = {
@@ -23,8 +26,8 @@ export default function RootLayout({
         name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0"
       />
-      <body className=" bg-slate-200 text-slate-50">
-        <div className="flex flex-col min-h-screen">
+      <body className={fontNoto.className}>
+        <div className="bg-slate-200 text-slate-50 flex flex-col min-h-screen">
           <Header />
           <main className="flex-grow">
             <Suspense fallback={<Loading />}>{children}</Suspense>
