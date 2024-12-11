@@ -1,13 +1,8 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
 import Github from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
 
 export const config: NextAuthConfig = {
-  adapter: PrismaAdapter(prisma),
   theme: {
     logo: "https://next-auth.js.org/img/logo/logo-sm.png",
   },
