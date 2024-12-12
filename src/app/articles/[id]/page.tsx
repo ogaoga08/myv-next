@@ -6,13 +6,13 @@ import { getDetailArticle } from "@/blogAPI";
 import DeleteButton from "@/app/components/DeleteButton";
 import BackButton from "@/app/components/BackButton";
 
-const Article = async ({ params }: { params: { createdAt: string } }) => {
+const Article = async ({ params }: { params: { id: number } }) => {
   // API呼び出し
   // const detailArticle = await getDetailArticle(params.id);
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const res = await fetch(`${API_URL}/api/blog/${params.createdAt}`, {
+  const res = await fetch(`${API_URL}/api/blog/${params.id}`, {
     next: { revalidate: 10 },
   }); //リアルタイムで更新されがだからSSR
   const detailArticle = await res.json();
@@ -23,7 +23,7 @@ const Article = async ({ params }: { params: { createdAt: string } }) => {
         <h1 className="font-bold text-slate-900 text-2xl text-center mb-5 mt-5">
           {detailArticle.title}
         </h1>
-        <div className="font-light text-slate-900 leading-relaxed text-justify">
+        <div className="font-medium text-slate-700 leading-relaxed text-justify">
           <p className="text-right">
             {new Date(detailArticle.createdAt).toLocaleString()}
           </p>
