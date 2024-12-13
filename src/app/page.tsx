@@ -7,7 +7,6 @@ import GenreButton from "./components/GenreButton";
 import Search from "./ui/search";
 import PartsTable from "./components/foods/table";
 import { ImageComponent } from "./components/ImageComponent";
-import { prisma } from "@/globals/db";
 
 export default async function Home({
   searchParams,

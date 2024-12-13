@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import ReviewButton from "./components/ReviewButton";
-import UserButton from "./components/user-button";
 
 const Header = () => {
   return (
@@ -14,7 +13,7 @@ const Header = () => {
           <Link href="/">myv</Link>
         </h1>
       </div>
-      <UserButton />
+      {/* <UserButton /> */}
     </header>
   );
 };
