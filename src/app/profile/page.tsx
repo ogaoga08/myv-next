@@ -1,33 +1,30 @@
-import React from "react";
-import { auth } from "@/auth";
-import CustomLink from "../components/custom-link";
-
-const page = async () => {
-  const session = await auth();
+"use client";
+import { signIn, signOut, useSession } from "next-auth/react";
+const IndexPage = () => {
+  const { data: session } = useSession();
 
   return (
-    <div className="flex flex-col gap-6 text-slate-900 m-5">
-      <h1 className="text-3xl font-bold">🚀NextAuth.js Tutorial</h1>
-      <div>
-        <CustomLink href="/server-example" className="underline">
-          サーバー
-        </CustomLink>
-        と
-        <CustomLink href="/client-example" className="underline">
-          クライアント
-        </CustomLink>
-        の例を見て、ページを保護してセッションデータを取得する方法を確認してください。
+    <>
+      <div className="flex justify-center">
+        {!session && (
+          <button
+            onClick={() => signIn()}
+            className="flex w-full justify-center border-2 border-b border-red-300 hover:border-red-400 bg-red-200 hover:bg-red-300 pb-6 pt-8 backdrop-blur-2xl dark:border-red-800 dark:hover:border-red-900 dark:bg-red-800/50 dark:hover:bg-red-900/30 lg:static lg:w-auto lg:rounded-xl lg:p-4"
+          >
+            Sign In
+          </button>
+        )}
+        {session && (
+          <button
+            onClick={() => signOut()}
+            className="flex w-full justify-center border-2 border-b border-green-300 bg-green-200 pb-6 pt-8 backdrop-blur-2xl dark:border-green-800 dark:bg-green-800/30 lg:static lg:w-auto lg:rounded-xl lg:p-4 hover:border-green-400 hover:bg-green-300 dark:hover:border-green-900 dark:hover:bg-green-900/30"
+          >
+            Sign Out
+          </button>
+        )}
       </div>
-      <div className="flex flex-col rounded-lg bg-neutral-100 shadow">
-        <div className="p-4 font-bold rounded-t-md bg-neutral-200">
-          Current Session
-        </div>
-        <pre className="py-6 px-4 whitespace-pre-wrap break-all">
-          {JSON.stringify(session, null, 2)}
-        </pre>
-      </div>
-    </div>
+    </>
   );
 };
 
-export default page;
+export default IndexPage;
