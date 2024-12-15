@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import ReviewButton from "./components/ReviewButton";
 
 const Header = () => {
   return (
@@ -14,6 +13,7 @@ const Header = () => {
         </h1>
       </div>
       {/* <UserButton /> */}
+      {/* <NextAuthProvider children={undefined} /> */}
     </header>
   );
 };
