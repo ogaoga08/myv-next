@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   return (
@@ -12,8 +13,12 @@ const Header = () => {
           <Link href="/">myv</Link>
         </h1>
       </div>
-      {/* <UserButton /> */}
-      {/* <NextAuthProvider children={undefined} /> */}
+      <SignedOut>
+        <SignInButton />
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
     </header>
   );
 };
