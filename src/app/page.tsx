@@ -7,6 +7,8 @@ import GenreButton from "./components/GenreButton";
 import Search from "./ui/search";
 import PartsTable from "./components/foods/table";
 import { ImageComponent } from "./components/ImageComponent";
+import { auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 
 export default async function Home({
   searchParams,
@@ -22,6 +24,10 @@ export default async function Home({
   const articles = await res.json();
 
   const query = searchParams?.query || "";
+
+  // console.log(auth());
+  const user = await currentUser();
+  console.log(user);
 
   return (
     <div className="md:flex">
