@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { getDetailArticle } from "@/blogAPI";
 import DeleteButton from "@/app/components/DeleteButton";
 import BackButton from "@/app/components/BackButton";
 

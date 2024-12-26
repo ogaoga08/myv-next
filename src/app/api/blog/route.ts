@@ -1,6 +1,6 @@
 // DB全件取得API
 import { supabase } from "@/utils/supabaseClient";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request, res: NextApiResponse) {
