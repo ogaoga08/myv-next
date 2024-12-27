@@ -72,7 +72,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="text-slate-900">
       <h1>Tasks</h1>
 
       {loading && <p>Loading...</p>}
@@ -91,6 +91,7 @@ export default function Home() {
           placeholder="Enter new task"
           onChange={(e) => setName(e.target.value)}
           value={name}
+          className="text-slate-700"
         />
         <button type="submit">Add</button>
       </form>
