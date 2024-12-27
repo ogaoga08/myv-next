@@ -7,11 +7,13 @@ export default function Home() {
   const [tasks, setTasks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState("");
+  // 以下二つはclerkのフックを利用
   // The `useUser()` hook will be used to ensure that Clerk has loaded data about the logged in user
   const { user } = useUser();
   // The `useSession()` hook will be used to get the Clerk session object
   const { session } = useSession();
 
+  // リクエストヘッダーにsupabaseトークンを挿入
   // Create a custom supabase client that injects the Clerk Supabase token into the request headers
   function createClerkSupabaseClient() {
     return createClient(
@@ -43,6 +45,7 @@ export default function Home() {
   // Create a `client` object for accessing Supabase data using the Clerk token
   const client = createClerkSupabaseClient();
 
+  // ユーザーオブジェクトのロード後にタスクを非同期関数でリクエストする
   // This `useEffect` will wait for the User object to be loaded before requesting
   // the tasks for the logged in user
   useEffect(() => {
@@ -58,6 +61,7 @@ export default function Home() {
     loadTasks();
   }, [user]);
 
+  // 新しいタスクをデータベースに挿入
   async function createTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // Insert task into the "tasks" database
