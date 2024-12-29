@@ -3,11 +3,16 @@
 import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import BackButton from "@/app/components/BackButton";
+import { currentUser } from "@clerk/nextjs/server";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY!;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 function CreateBlogPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  // const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
@@ -20,84 +25,60 @@ function CreateBlogPage() {
     }
   }, [searchParams]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    // リロードを防ぐ
-    e.preventDefault();
-
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     setLoading(true);
 
-    // APIを叩く(JSONサーバー)
-    // await createArticle(id, title, content);
+    try {
+      const user = await currentUser();
+      const { imageUrl, firstName, lastName } = user;
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+      const { error } = await supabase
+        .from("users")
+        .insert([
+          { image_url: imageUrl, first_name: firstName, last_name: lastName },
+        ]);
 
-    await fetch(`${API_URL}/api/blog`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, title, content }),
-    }); //リアルタイムで更新されがだからSSR
+      if (error) throw error;
 
-    setLoading(false);
-    router.back();
-    router.refresh();
+      alert("ユーザー情報が保存されました");
+    } catch (error) {
+      console.error("Error saving user info:", error);
+      alert("ユーザー情報の保存に失敗しました");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 md:px-12">
-      <h2 className="text-2xl font-bold mb-4 text-gray-900">口コミ新規投稿</h2>
-      <form
-        className="bg-slate-100 p-6 rounded shadow-lg"
-        onSubmit={handleSubmit}
-      >
-        <div className="mb-4">
-          <label className="text-gray-700 text-sm font-bold mb-2">部位名</label>
-          <input
-            type="text"
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            disabled
-          />
+    <div className="md:flex">
+      <section className="w-full md:w-2/3 flex flex-col items-center px-3 md:pl-6">
+        <div className="bg-white shadow-md rounded mt-4 w-full flex justify-center items-center">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="名前"
+            />
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="タイトル"
+            />
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="コンテンツ"
+            />
+            <button type="submit">{loading ? "投稿中..." : "投稿"}</button>
+            <div className="mx-4">
+              <BackButton />
+            </div>
+          </form>
         </div>
-        <div className="mb-4">
-          <label className="text-gray-700 text-sm font-bold mb-2">
-            タイトル
-          </label>
-          <input
-            type="text"
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="text-gray-700 text-sm font-bold mb-2">本文</label>
-          <textarea
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-            onChange={(e) => setContent(e.target.value)}
-            required
-          />
-        </div>
-        <div className="flex items-center">
-          <button
-            className={`py-2 px-4 border rounded-md ${
-              loading
-                ? "bg-gray-700 cursor-not-allowed"
-                : "bg-red-500 hover:bg-red-600"
-            } `}
-            disabled={loading}
-            type="submit"
-          >
-            {loading ? "投稿中..." : "投稿"}
-          </button>
-          <div className="mx-4">
-            <BackButton />
-          </div>
-        </div>
-      </form>
+      </section>
     </div>
   );
 }
