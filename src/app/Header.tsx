@@ -14,7 +14,7 @@ const Header = () => {
         </h1>
       </div>
       <SignedOut>
-        <SignInButton />
+        <Link href={"/sign-in"}>サインイン</Link>
       </SignedOut>
       <SignedIn>
         <UserButton />
