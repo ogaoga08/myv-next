@@ -66,10 +66,15 @@ export async function POST(req: Request) {
           image: JSON.parse(body).data.image_url,
         },
       });
-      return new Response("ユーザー登録できましたよー", { status: 200 });
-    } catch (err) {
-      console.log(err);
-      return new Response("ユーザー登録できませんでしたよ", { status: 500 });
+      return new Response("ユーザー登録に成功しました", { status: 200 });
+    } catch (error) {
+      console.error("エラーの詳細:", {
+        error,
+        body: JSON.parse(body),
+        eventType,
+        eventId: evt.data.id,
+      });
+      return new Response("ユーザー登録に失敗しました", { status: 500 });
     }
   }
 
@@ -84,10 +89,10 @@ export async function POST(req: Request) {
           image: JSON.parse(body).data.image_url,
         },
       });
-      return new Response("ユーザー情報更新できましたよ", { status: 200 });
+      return new Response("ユーザー情報更新できました", { status: 200 });
     } catch (err) {
       console.log(err);
-      return new Response("ユーザー情報更新できませんでsた", { status: 500 });
+      return new Response("ユーザー情報更新できませんでした", { status: 500 });
     }
   }
 
