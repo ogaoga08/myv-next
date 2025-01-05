@@ -21,8 +21,8 @@ export default async function Home({
   const query = searchParams?.query || "";
 
   // ユーザー情報の取得
-  const user = await currentUser();
-  console.log(user);
+  // const user = await currentUser();
+  // console.log(user);
 
   return (
     <div className="md:flex">
