@@ -30,7 +30,7 @@ export default function RootLayout({
         <body className={fontNoto.className}>
           <div className="bg-slate-200 text-slate-50 flex flex-col min-h-screen">
             <Header />
-            <main className="flex-grow">
+            <main className="flex-grow pt-20">
               <Suspense fallback={<Loading />}>{children}</Suspense>
             </main>
             <Footer />

@@ -29,9 +29,9 @@ const Back = () => {
   useEffect(() => {
     const fetchData = async () => {
       const API_URL = process.env.NEXT_PUBLIC_API_URL;
-      const res = await fetch(`${API_URL}/api/blog`, { cache: "no-store" });
-      const articlesData = await res.json();
-      setArticles(articlesData);
+      // const res = await fetch(`${API_URL}/api/blog`, { cache: "no-store" });
+      // const articlesData = await res.json();
+      // setArticles(articlesData);
 
       const partData = parts.find((part) => part.engname === name);
       setPart(partData || null);

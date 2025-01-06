@@ -4,7 +4,7 @@ import { NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request, res: NextApiResponse) {
-  const { data, error } = await supabase.from("posts").select("*");
+  const { data, error } = await supabase.from("Post").select("*");
 
   if (error) {
     return NextResponse.json(error);
@@ -18,7 +18,7 @@ export async function POST(req: Request, res: NextApiResponse) {
   const { name, title, content } = await req.json();
 
   const { data, error } = await supabase
-    .from("posts")
+    .from("Post")
     .insert([{ name, title, content, createdAt: new Date().toISOString() }]);
 
   if (error) {
