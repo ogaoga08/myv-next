@@ -27,7 +27,7 @@ export async function addPostAction(
   try {
     const postText = PostTextSchema.parse(formData.get("post") as string);
 
-    const { userId } = auth();
+    const { userId } = await auth();
 
     if (!userId) {
       throw new Error("User is not authenticated");
@@ -37,8 +37,10 @@ export async function addPostAction(
 
     await prisma.post.create({
       data: {
-        authorId: userId,
+        name: "hoge",
+        title: "hoge",
         content: postText,
+        authorId: userId,
       },
     });
 
@@ -75,7 +77,7 @@ export const likeAction = async (
   formData: FormData
   // postId: string
 ) => {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   if (!userId) {
     return { likes: [], error: "User is not authenticated" };
@@ -115,7 +117,7 @@ export const likeAction = async (
 };
 
 export const followAction = async (userId: string) => {
-  const { userId: currentUserId } = auth();
+  const { userId: currentUserId } = await auth();
 
   if (!userId) {
     throw new Error("User is not Found");

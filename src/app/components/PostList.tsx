@@ -27,7 +27,7 @@ export default async function PostList({ username }: { username?: string }) {
   //   },
   // ];
 
-  const { userId } = auth();
+  const { userId } = await auth();
 
   const posts = await fetchPosts(userId, username);
 
