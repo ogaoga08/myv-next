@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import ArticleList from "../../../components/ArticleList";
 import parts from "@/data/partsData";
 import { usePathname } from "next/navigation";
 import Loading from "@/app/loading";
@@ -93,7 +92,7 @@ const Back = () => {
           <h1 className="font-bold text-gray-900 pt-6 m-2 md:text-2xl text-left">
             みんなの口コミ
           </h1>
-          <ArticleList articles={articles} />
+          {/* <ArticleList articles={articles} /> */}
         </div>
       </aside>
     </div>

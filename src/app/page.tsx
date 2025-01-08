@@ -4,6 +4,7 @@ import Search from "./ui/search";
 import PartsTable from "./components/foods/table";
 import { ImageComponent } from "./components/ImageComponent";
 import { currentUser } from "@clerk/nextjs/server";
+import ReviewList from "./components/ReviewList";
 
 export default async function Home({
   searchParams,
@@ -48,12 +49,13 @@ export default async function Home({
           </h1>
           <GenreButton />
         </div>
-        {/* <div className="pt-6">
+        <div className="pt-6">
           <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
             最近の口コミ
           </h1>
-          <ArticleList articles={articles} />
-        </div> */}
+          {/* <ArticleList articles={articles} /> */}
+          <ReviewList />
+        </div>
       </aside>
     </div>
   );
