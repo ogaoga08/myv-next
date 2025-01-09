@@ -4,54 +4,39 @@ import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 import { revalidatePath, revalidateTag } from "next/cache";
+import { error } from "console";
 
-type State = {
-  error?: string;
-  success: boolean;
-};
-
-type LikeState = {
-  likes: string[];
-  error?: string | undefined;
-};
-
-export async function addPostAction(
-  prevState: State,
-  formData: FormData
-): Promise<State> {
-  const PostTextSchema = z
-    .string()
-    .min(1, "ポスト内容を入力してください。")
-    .max(140, "140字以内で入力してください。");
-
+export async function addPostAction(formData: FormData) {
   try {
-    const postText = PostTextSchema.parse(formData.get("post") as string);
-
     const { userId } = await auth();
 
     if (!userId) {
-      throw new Error("User is not authenticated");
+      return;
     }
 
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    const contentText = formData.get("content") as string; //nullは許容されない
+    const contentTextSchema = z
+      .string()
+      .min(2, "contentを入力してください")
+      .max(300, "300字以内で入力してください");
+
+    const validatedContentText = contentTextSchema.parse(contentText);
 
     await prisma.post.create({
       data: {
         name: "hoge",
         title: "hoge",
-        content: postText,
+        content: validatedContentText,
         authorId: userId,
       },
     });
 
-    revalidatePath("/");
-    // revalidateTag("posts");
-
     return {
-      success: true,
       error: undefined,
+      success: true,
     };
   } catch (error) {
+    // エラー処理(zodのエラーとそれ以外のエラーを分ける)
     if (error instanceof z.ZodError) {
       return {
         error: error.errors.map((e) => e.message).join(", "),
@@ -59,106 +44,14 @@ export async function addPostAction(
       };
     } else if (error instanceof Error) {
       return {
-        //その他のエラー
-        success: false,
         error: error.message,
+        success: false,
       };
     } else {
-      //予期せぬエラー
       return {
+        error: "予期せぬエラーが発生しました",
         success: false,
-        error: "An unexpected error occurred",
       };
     }
   }
 }
-
-export const likeAction = async (
-  formData: FormData
-  // postId: string
-) => {
-  const { userId } = await auth();
-
-  if (!userId) {
-    return { likes: [], error: "User is not authenticated" };
-  }
-
-  const postId = formData.get("postId") as string;
-
-  try {
-    const existingLike = await prisma.like.findFirst({
-      where: {
-        postId,
-        userId,
-      },
-    });
-
-    if (existingLike) {
-      await prisma.like.delete({
-        where: {
-          id: existingLike.id,
-        },
-      });
-
-      revalidatePath("/");
-    } else {
-      await prisma.like.create({
-        data: {
-          postId,
-          userId,
-        },
-      });
-
-      revalidatePath("/");
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const followAction = async (userId: string) => {
-  const { userId: currentUserId } = await auth();
-
-  if (!userId) {
-    throw new Error("User is not Found");
-  }
-
-  if (!currentUserId) {
-    throw new Error("User is not authenticated");
-  }
-
-  try {
-    //unfollow
-    const existingFollow = await prisma.follow.findFirst({
-      where: {
-        followerId: currentUserId,
-        followingId: userId,
-      },
-    });
-
-    if (existingFollow) {
-      await prisma.follow.delete({
-        where: {
-          followerId_followingId: {
-            followerId: currentUserId,
-            followingId: userId,
-          },
-        },
-      });
-    } else {
-      //follow
-      await prisma.follow.create({
-        data: {
-          followerId: currentUserId,
-          followingId: userId,
-        },
-      });
-    }
-
-    revalidatePath(`/profile/${userId}`);
-    revalidatePath(`/profile/${currentUserId}`);
-  } catch (err) {
-    console.log(err);
-    throw new Error("Something went wrong");
-  }
-};

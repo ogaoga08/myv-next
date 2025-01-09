@@ -15,11 +15,8 @@ interface LeftSidebarProps {
 
 export default function ReviewList() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 flex flex-col h-full overflow-hidden">
-      <div className="mb-3">
-        <PostForm />
-      </div>
-      <div className="flex-1 overflow-y-auto">{/* <PostList /> */}</div>
+    <div className="bg-white shadow-md rounded mt-4 w-full flex ">
+      <PostForm />
     </div>
   );
 }

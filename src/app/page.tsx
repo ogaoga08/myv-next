@@ -31,6 +31,7 @@ export default async function Home({
         <div className="bg-white shadow-md rounded mt-4 w-full flex justify-center items-center">
           <ImageComponent src="/cattle.svg" />
         </div>
+        <ReviewList />
       </section>
       <aside className="w-full md:w-1/3 flex flex-col px-3">
         <div className="pt-4">
@@ -53,8 +54,7 @@ export default async function Home({
           <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
             最近の口コミ
           </h1>
-          {/* <ArticleList articles={articles} /> */}
-          <ReviewList />
+          {/* <div className="flex-1 overflow-y-auto"><PostList /></div> */}
         </div>
       </aside>
     </div>
