@@ -3,15 +3,22 @@
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
-import { revalidatePath, revalidateTag } from "next/cache";
-import { error } from "console";
 
-export async function addPostAction(formData: FormData) {
+type State = {
+  error?: string | undefined;
+  success: boolean;
+};
+
+//　アロー関数ではなくfunctionで書きましょう(シリアライズエラーを回避するため)
+export async function addPostAction(
+  prevState: State,
+  formData: FormData
+): Promise<State> {
   try {
     const { userId } = await auth();
 
     if (!userId) {
-      return;
+      return { error: "ログインしてください", success: false };
     }
 
     const contentText = formData.get("content") as string; //nullは許容されない
@@ -21,6 +28,9 @@ export async function addPostAction(formData: FormData) {
       .max(300, "300字以内で入力してください");
 
     const validatedContentText = contentTextSchema.parse(contentText);
+
+    // 意図的ローディングタイム
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     await prisma.post.create({
       data: {

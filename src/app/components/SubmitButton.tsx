@@ -1,11 +1,11 @@
-"use client";
-
+// 親コンポーネントがクライアントコンポーネントであるため、子もクライアントcp → useFormStatusを使用できる
 import { Button } from "@/app/components/ui/button";
 import { SendIcon } from "./Icons";
 import { useFormStatus } from "react-dom";
 
 export function SubmitButton() {
   const { pending } = useFormStatus();
+  // pendingがtrueの時はボタンを無効化する
 
   return (
     <>

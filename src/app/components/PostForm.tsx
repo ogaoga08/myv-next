@@ -2,29 +2,39 @@
 
 import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-import { SendIcon } from "./Icons";
-import { prisma } from "@/lib/prisma";
-import { auth } from "@clerk/nextjs/server";
-import { z } from "zod";
 import { useRef, useState } from "react";
 import { addPostAction } from "@/lib/actions";
+import { SubmitButton } from "./SubmitButton";
+import { useFormState } from "react-dom";
 
 export default function PostForm() {
-  const [error, setError] = useState<string | undefined>("");
+  const initialState = {
+    error: undefined,
+    success: false,
+  };
+  // const [error, setError] = useState<string | undefined>("");
   const formRef = useRef<HTMLFormElement>(null); //入力欄のリセット用
 
-  const hundleSubmit = async (formData: FormData) => {
-    const result = await addPostAction(formData);
-    if (!result?.success) {
-      setError(result?.error);
-    } else {
-      setError("");
-      if (formRef.current) {
-        formRef.current.reset();
-      }
-    }
-  };
+  // useFormStateを使った書き方
+  // サーバアクションを使う時に楽にバリデーションチェックができる(React15以降はuseActionState)
+  const [state, formAction] = useFormState(addPostAction, initialState);
+
+  // サーバーアクションの普通の書き方(めんどいね)
+  // const hundleSubmit = async (formData: FormData) => {
+  //   const result = await addPostAction(formData);
+  //   if (!result?.success) {
+  //     setError(result?.error);
+  //   } else {
+  //     setError("");
+  //     if (formRef.current) {
+  //       formRef.current.reset();
+  //     }
+  //   }
+  // };
+
+  if (state.success && formRef.current) {
+    formRef.current.reset();
+  }
 
   return (
     <div className="m-4">
@@ -35,7 +45,7 @@ export default function PostForm() {
         </Avatar>
         <form
           ref={formRef}
-          action={hundleSubmit}
+          action={formAction}
           className="flex flex-1 items-center"
         >
           {/* <Input
@@ -56,13 +66,12 @@ export default function PostForm() {
             className="wーfull rounded bg-muted px-4 py-2 text-slate-900"
             name="content"
           />
-          <Button variant="ghost" size="icon">
-            <SendIcon className="h-5 w-5 text-muted-foreground" />
-            <span className="sr-only">Tweet</span>
-          </Button>
+          <SubmitButton />
         </form>
       </div>
-      {error && <p className="text-destructive mt-1 ml-14">{error}</p>}
+      {state.error && (
+        <p className="text-destructive mt-1 ml-14">{state.error}</p>
+      )}
     </div>
   );
 }
