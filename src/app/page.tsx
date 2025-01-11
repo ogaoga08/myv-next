@@ -5,6 +5,7 @@ import PartsTable from "./components/foods/table";
 import { ImageComponent } from "./components/ImageComponent";
 import { currentUser } from "@clerk/nextjs/server";
 import ReviewList from "./components/ReviewList";
+import PostList from "./components/PostList";
 
 export default async function Home({
   searchParams,
@@ -15,9 +16,6 @@ export default async function Home({
   };
 }) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-  const res = await fetch(`${API_URL}/api/blog`, { cache: "no-store" }); //リアルタイムで更新されがだからSSR
-  const articles = await res.json();
 
   const query = searchParams?.query || "";
 
@@ -54,7 +52,9 @@ export default async function Home({
           <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
             最近の口コミ
           </h1>
-          {/* <div className="flex-1 overflow-y-auto"><PostList /></div> */}
+          <div className="flex-1 overflow-y-auto">
+            <PostList />
+          </div>
         </div>
       </aside>
     </div>

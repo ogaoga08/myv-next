@@ -19,6 +19,9 @@ export default function Post({ post }: any) {
           <p className="text-muted-foreground">{post.author.username}</p>
         </div>
       </div>
+      <div className="mb-2">
+        <p className="text-slate-600 font-light">#{post.title}</p>
+      </div>
       <div className="space-y-2">
         <p>{post.content}</p>
       </div>

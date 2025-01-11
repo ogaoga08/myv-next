@@ -32,7 +32,7 @@ export default async function PostList({ username }: { username?: string }) {
   const posts = await fetchPosts(userId, username);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 text-slate-800 shadow">
       {posts
         ? posts.map((post) => <Post key={post.id} post={post} />)
         : "No posts found!"}
