@@ -42,6 +42,9 @@ export async function addPostAction(
       },
     });
 
+    // ポストした瞬間にキャッシュを更新する(リロードしなくてもすぐに反映される)
+    revalidatePath("/");
+
     return {
       error: undefined,
       success: true,
