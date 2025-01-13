@@ -92,13 +92,16 @@ const PostInteraction = ({
         </Button>
       </form>
       <span
-        className={`-ml-1 ${optimisticLike.isLiked ? "text-destructive" : ""}`}
+        className={`-ml-1 ${
+          optimisticLike.isLiked ? "text-destructive" : "text-muted-foreground"
+        }`}
       >
         {optimisticLike.count}
       </span>
       <Button variant="ghost" size="icon">
         <MessageCircleIcon className="h-5 w-5 text-muted-foreground" />
       </Button>
+      <span className="text-muted-foreground">{commentNumber}</span>
       <Button variant="ghost" size="icon">
         <Share2Icon className="h-5 w-5 text-muted-foreground" />
       </Button>

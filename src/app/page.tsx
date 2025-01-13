@@ -3,7 +3,6 @@ import GenreButton from "./components/GenreButton";
 import Search from "./ui/search";
 import PartsTable from "./components/foods/table";
 import { ImageComponent } from "./components/ImageComponent";
-import { currentUser } from "@clerk/nextjs/server";
 import ReviewList from "./components/ReviewList";
 import PostList from "./components/PostList";
 
@@ -18,10 +17,6 @@ export default async function Home({
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const query = searchParams?.query || "";
-
-  // ユーザー情報の取得
-  // const user = await currentUser();
-  // console.log(user);
 
   return (
     <div className="md:flex">

@@ -16,7 +16,6 @@ export default function Post({ post }: any) {
         </Link>
         <div>
           <h3 className="text-lg font-bold">{post.author.username}</h3>
-          <p className="text-muted-foreground">{post.author.username}</p>
         </div>
       </div>
       <div className="mb-2">
