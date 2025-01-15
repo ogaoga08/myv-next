@@ -51,6 +51,7 @@ const PostInteraction = ({
 
   // const [state, formAction] = useFormState(likeAction, initialState);
 
+  // 楽観的UI更新(非同期処理の実行中、一時的にコピーを表示させるReactフック)
   const [optimisticLike, addOptimisticLike] = useOptimistic<LikeState, void>(
     initialState,
     //updateFn

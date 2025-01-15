@@ -63,7 +63,7 @@ export async function addPostAction(
       };
     } else {
       return {
-        error: "予期せぬエラーが発生しました",
+        error: "予期せぬエラーが発生しました(Unexpected error occurred)",
         success: false,
       };
     }
@@ -77,7 +77,10 @@ export const likeAction = async (
   const { userId } = await auth();
 
   if (!userId) {
-    return { likes: [], error: "User is not authenticated" };
+    return {
+      likes: [],
+      error: "アカウントが認証されていません(User is not authenticated)",
+    };
   }
 
   const postId = formData.get("postId") as string;
