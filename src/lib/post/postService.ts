@@ -29,43 +29,23 @@ export async function fetchPosts(userId: string | null, username?: string) {
     });
   }
 
-  if (!username && userId) {
-    const following = await prisma.follow.findMany({
-      where: {
-        followerId: userId,
-      },
-      select: {
-        followingId: true,
-      },
-    });
-
-    const followingIds = following.map((f) => f.followingId);
-    const ids = [userId, ...followingIds]; //自分とフォローしているユーザーのIDを取得(timelineに表示するため)
-
-    return await prisma.post.findMany({
-      where: {
-        authorId: {
-          in: ids,
+  // 全ての投稿を取得する
+  return await prisma.post.findMany({
+    include: {
+      author: true,
+      likes: {
+        select: {
+          userId: true,
         },
       },
-      include: {
-        author: true,
-        likes: {
-          select: {
-            userId: true,
-          },
-        },
-        //返信数の取得
-        _count: {
-          select: {
-            replies: true,
-          },
+      _count: {
+        select: {
+          replies: true,
         },
       },
-      // //作成日時の降順(最新のものから)ソート
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-  }
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 }
