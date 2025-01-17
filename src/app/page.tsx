@@ -26,8 +26,8 @@ export default async function Home({
         </div>
         <ReviewList />
       </section>
-      <aside className="w-full md:w-1/3 flex flex-col px-3">
-        <div className="pt-4">
+      <aside className="w-full md:w-1/3 flex flex-col px-3 mt-4 max-h-screen overflow-y-auto">
+        <div className="">
           <Search placeholder="部位名・キーワードで検索..." />
           <PartsTable query={query} />
         </div>
