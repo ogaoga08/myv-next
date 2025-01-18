@@ -28,7 +28,7 @@ export default function RootLayout({
           content="width=device-width,initial-scale=1.0,minimum-scale=1.0"
         />
         <body className={fontNoto.className}>
-          <div className="bg-slate-200 text-slate-50 flex flex-col min-h-screen">
+          <div className="bg-slate-200 text-slate-800 flex flex-col min-h-screen">
             <Header />
             <main className="flex-grow pt-20">
               <Suspense fallback={<Loading />}>{children}</Suspense>
