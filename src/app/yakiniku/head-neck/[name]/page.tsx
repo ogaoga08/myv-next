@@ -9,6 +9,7 @@ import BackButton from "@/app/components/BackButton";
 import ReviewButton from "@/app/components/ReviewButton";
 import { ImageComponent } from "@/app/components/ImageComponent";
 import RatingStar from "@/app/components/RatingStar";
+import PostList from "@/app/components/PostList";
 
 const Back = () => {
   const [articles, setArticles] = useState([]);
@@ -92,7 +93,7 @@ const Back = () => {
           <h1 className="font-bold text-gray-900 pt-6 m-2 md:text-2xl text-left">
             みんなの口コミ
           </h1>
-          {/* <ArticleList articles={articles} /> */}
+          <div className="flex-1 overflow-y-auto">{/* <PostList /> */}</div>
         </div>
       </aside>
     </div>
