@@ -14,8 +14,6 @@ export default async function Home({
     page?: string;
   };
 }) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
   const query = searchParams?.query || "";
 
   return (

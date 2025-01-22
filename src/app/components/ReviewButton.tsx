@@ -12,6 +12,7 @@ const ReviewButton = () => {
 
   return (
     <button
+      disabled
       onClick={handleClick}
       className="text-center bg-red-700 text-white font-bold py-2 px-4 mx-2 rounded hover:bg-red-900 hover:opacity-75"
     >

@@ -28,14 +28,7 @@ export default async function ProfilePage({
     include: {
       _count: {
         select: {
-          following: true,
-          followedBy: true,
           posts: true,
-        },
-      },
-      followedBy: {
-        where: {
-          followerId: currentUserId,
         },
       },
     },
@@ -44,9 +37,6 @@ export default async function ProfilePage({
   if (!user) {
     return notFound();
   }
-
-  const isCurrentUser = currentUserId === user.id;
-  const isFollowing = user.followedBy.length > 0;
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
@@ -83,18 +73,6 @@ export default async function ProfilePage({
                   <div className="text-2xl font-bold">{user._count.posts}</div>
                   <div className="text-muted-foreground">Posts</div>
                 </div>
-                <div className="flex flex-col items-center">
-                  <div className="text-2xl font-bold">
-                    {user._count.following}
-                  </div>
-                  <div className="text-muted-foreground">Followers</div>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="text-2xl font-bold">
-                    {user._count.followedBy}
-                  </div>
-                  <div className="text-muted-foreground">Following</div>
-                </div>
               </div>
 
               <div className="mt-6 h-[500px] overflow-y-auto">
@@ -102,11 +80,6 @@ export default async function ProfilePage({
               </div>
             </div>
             <div className="sticky top-14 self-start space-y-6">
-              {/* <FollowButton
-                isFollowing={isFollowing}
-                userId={user.id}
-                isCurrentUser={isCurrentUser}
-              /> */}
               <div>
                 <h3 className="text-lg font-bold">Suggested</h3>
                 <div className="mt-4 space-y-4">
