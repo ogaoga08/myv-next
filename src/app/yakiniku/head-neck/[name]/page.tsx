@@ -12,7 +12,6 @@ import RatingStar from "@/app/components/RatingStar";
 import PostList from "@/app/components/PostList";
 
 const Back = () => {
-  const [articles, setArticles] = useState([]);
   interface Part {
     name: string;
     descr: string;
