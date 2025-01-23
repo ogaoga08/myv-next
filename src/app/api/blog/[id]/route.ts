@@ -6,12 +6,12 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request, res: NextApiResponse) {
   // URLのエンドポイントを一部取得
-  const id = req.url.split("/blog/")[1];
+  const name = req.url.split("/blog/")[1];
 
   const { data, error } = await supabase
-    .from("posts")
+    .from("MeatPart")
     .select("*")
-    .eq("id", id)
+    .eq("engName", name)
     .single();
 
   if (error) {
@@ -29,18 +29,18 @@ export async function GET(req: Request, res: NextApiResponse) {
   return NextResponse.json(data, { status: 200 });
 }
 
-export async function DELETE(req: Request, res: NextApiResponse) {
-  // URLのエンドポイントを一部取得
-  const id = req.url.split("/blog/")[1];
+// export async function DELETE(req: Request, res: NextApiResponse) {
+//   // URLのエンドポイントを一部取得
+//   const id = req.url.split("/blog/")[1];
 
-  const { error: deleteError } = await supabase
-    .from("posts")
-    .delete()
-    .eq("id", id);
+//   const { error: deleteError } = await supabase
+//     .from("posts")
+//     .delete()
+//     .eq("id", id);
 
-  if (deleteError) {
-    return NextResponse.json(deleteError);
-  }
+//   if (deleteError) {
+//     return NextResponse.json(deleteError);
+//   }
 
-  return NextResponse.json({ status: 200 });
-}
+//   return NextResponse.json({ status: 200 });
+// }

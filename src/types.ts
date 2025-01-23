@@ -1,10 +1,13 @@
-// export type Article = {
-//   id: number;
-//   name: string;
-//   title: string;
-//   content: string;
-//   createdAt: string;
-// };
+export type Part = {
+  name: string;
+  description: string;
+  softness: number;
+  fat: number;
+  rare: number;
+  YorO: string;
+  position: string;
+  engName: string;
+};
 
 export interface UserData {
   id: string;

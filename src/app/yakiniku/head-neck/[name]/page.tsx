@@ -60,7 +60,7 @@ import ReviewButton from "@/app/components/ReviewButton";
 import { ImageComponent } from "@/app/components/ImageComponent";
 import RatingStar from "@/app/components/RatingStar";
 
-const Back = () => {
+const Page = () => {
   // const [articles, setArticles] = useState([]);
   interface Part {
     name: string;
@@ -149,4 +149,4 @@ const Back = () => {
   );
 };
 
-export default Back;
+export default Page;
