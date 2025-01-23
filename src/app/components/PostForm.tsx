@@ -38,35 +38,30 @@ export default function PostForm() {
 
   return (
     <div className="m-4">
-      <div className="flex items-center gap-4">
-        <Avatar className="w-10 h-10">
-          {/* <AvatarImage src="/placeholder-user.jpg" /> */}
-          <AvatarFallback>AC</AvatarFallback>
-        </Avatar>
+      <h1 className="font-bold m-2 mb-6 text-gray-900 md:text-2xl text-xl text-left">
+        口コミを投稿する
+      </h1>
+      <div className="flex flex-col gap-4">
         <form
           ref={formRef}
           action={formAction}
-          className="flex flex-1 items-center"
+          className="flex flex-col items-start"
         >
-          {/* <Input
-          type="text"
-          placeholder="What's on your mind?"
-          className="flex-1 rounded-full bg-muted px-4 py-2 text-slate-900"
-          name="name"
-        />
-      <Input
-          type="text"
-          placeholder="What's on your mind?"
-          className="flex-1 rounded-full bg-muted px-4 py-2 text-slate-900"
-          name="title"
-        /> */}
           <Input
             type="text"
-            placeholder="最近食べた部位は？"
-            className="wーfull rounded bg-muted px-4 py-2 text-slate-900"
-            name="content"
+            placeholder="カルビ"
+            className="w-28 rounded bg-muted px-4 py-2 text-slate-900 mb-4"
+            name="name"
           />
-          <SubmitButton />
+          <div className="flex w-full mb-4">
+            <Input
+              type="text"
+              placeholder="脂が乗って美味しい"
+              className="flex-grow rounded bg-muted px-4 py-2 text-slate-900"
+              name="content"
+            />
+            <SubmitButton />
+          </div>
         </form>
       </div>
       {state.error && (

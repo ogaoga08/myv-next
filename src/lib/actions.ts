@@ -30,12 +30,20 @@ export async function addPostAction(
 
     const validatedContentText = contentTextSchema.parse(contentText);
 
+    const nameText = formData.get("name") as string; //nullは許容されない
+    const nameTextSchema = z
+      .string()
+      .min(1, "nameを入力してください")
+      .max(20, "20字以内で入力してください");
+
+    const validatedNameText = nameTextSchema.parse(nameText);
+
     // 意図的ローディングタイム
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     await prisma.post.create({
       data: {
-        name: "hoge",
+        name: validatedNameText,
         title: "hoge",
         content: validatedContentText,
         authorId: userId,

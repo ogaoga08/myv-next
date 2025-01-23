@@ -56,79 +56,29 @@ export default async function ProfilePage({
                   <h1 className="text-3xl font-bold">{user.username}</h1>
                   <div className="text-muted-foreground">@{user.username}</div>
                 </div>
+                <div className="items-end gap-6">
+                  <div className="flex flex-col items-center">
+                    <div className="text-2xl font-bold">
+                      {user._count.posts}
+                    </div>
+                    <div className="text-muted-foreground">Posts</div>
+                  </div>
+                </div>
               </div>
 
               <div className="mt-4 flex items-center gap-4 text-muted-foreground">
-                <div>
+                {/* <div>
                   <MapPinIcon className="w-4 h-4 mr-1 inline" />
                   xxxxxxxxx
                 </div>
                 <div>
                   <LinkIcon className="w-4 h-4 mr-1 inline" />
                   xxxxxx.com
-                </div>
-              </div>
-              <div className="mt-6 flex items-center gap-6">
-                <div className="flex flex-col items-center">
-                  <div className="text-2xl font-bold">{user._count.posts}</div>
-                  <div className="text-muted-foreground">Posts</div>
-                </div>
+                </div> */}
               </div>
 
-              <div className="mt-6 h-[500px] overflow-y-auto">
+              <div className="mt-6 h-screen overflow-y-auto">
                 <PostList username={username} />
-              </div>
-            </div>
-            <div className="sticky top-14 self-start space-y-6">
-              <div>
-                <h3 className="text-lg font-bold">Suggested</h3>
-                <div className="mt-4 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <Avatar className="w-10 h-10">
-                      <AvatarImage src="/placeholder-user.jpg" />
-                      <AvatarFallback>AC</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="font-medium">Acme Inc</div>
-                      <div className="text-muted-foreground text-sm">
-                        @acmeinc
-                      </div>
-                    </div>
-                    <Button variant="ghost" size="icon" className="ml-auto">
-                      <PlusIcon className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Avatar className="w-10 h-10">
-                      <AvatarImage src="/placeholder-user.jpg" />
-                      <AvatarFallback>AC</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="font-medium">Acme Inc</div>
-                      <div className="text-muted-foreground text-sm">
-                        @acmeinc
-                      </div>
-                    </div>
-                    <Button variant="ghost" size="icon" className="ml-auto">
-                      <PlusIcon className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Avatar className="w-10 h-10">
-                      <AvatarImage src="/placeholder-user.jpg" />
-                      <AvatarFallback>AC</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="font-medium">Acme Inc</div>
-                      <div className="text-muted-foreground text-sm">
-                        @acmeinc
-                      </div>
-                    </div>
-                    <Button variant="ghost" size="icon" className="ml-auto">
-                      <PlusIcon className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

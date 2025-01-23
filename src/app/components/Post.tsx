@@ -11,7 +11,7 @@ export default function Post({ post }: any) {
         <Link href={`/profile/${post.author.username}`}>
           <Avatar className="w-10 h-10">
             <AvatarImage src={post.author.image} />
-            <AvatarFallback>AC</AvatarFallback>
+            <AvatarFallback>??</AvatarFallback>
           </Avatar>
         </Link>
         <div>
@@ -19,7 +19,7 @@ export default function Post({ post }: any) {
         </div>
       </div>
       <div className="mb-2">
-        <p className="text-slate-600 font-light">#{post.title}</p>
+        <p className="text-slate-600 font-light">#{post.name}</p>
       </div>
       <div className="space-y-2">
         <p>{post.content}</p>
