@@ -1,8 +1,4 @@
-import { Button } from "@/app/components/ui/button";
-import PostList from "@/app/components/PostList";
-import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import { auth } from "@clerk/nextjs/server";
 import { fetchMeatParts } from "@/lib/part/partService";
 import { ImageComponent } from "@/app/components/ImageComponent";
 
@@ -10,12 +6,12 @@ export default async function Page({ params }: { params: { name: string } }) {
   // const { userId } = await auth();
 
   const meatParts = await fetchMeatParts();
+  console.log(params);
 
-  const part = meatParts.find((part) => part.name === params.name);
+  const part = meatParts.find((part) => part.name === "tongue");
   if (!part) {
     return notFound();
   }
-  console.log(params);
 
   return (
     <div className="md:flex">

@@ -1,19 +1,15 @@
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { prisma } from "@/lib/prisma";
 
 export async function fetchMeatParts() {
-  const { data, error } = await supabase
-    .from("MeatPart")
-    .select("*")
-    .order("createdAt", { ascending: false });
-
-  if (error) {
+  try {
+    const meatParts = await prisma.meatPart.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return meatParts;
+  } catch (error) {
     console.error("Error fetching MeatParts:", error);
     return [];
   }
-
-  return data;
 }
