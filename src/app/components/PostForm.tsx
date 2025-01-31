@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import { addPostAction } from "@/lib/actions";
 import { SubmitButton } from "./SubmitButton";
 import { useFormState } from "react-dom";
+import { Star } from "./Star";
 
 export default function PostForm() {
   const initialState = {
@@ -50,9 +51,12 @@ export default function PostForm() {
           <Input
             type="text"
             placeholder="カルビ"
-            className="w-28 rounded bg-muted px-4 py-2 text-slate-900 mb-4"
+            className="w-28 rounded bg-muted px-4 py-2 text-slate-900"
             name="name"
           />
+          <div className="m-4">
+            <Star />
+          </div>
           <div className="flex w-full mb-4">
             <Input
               type="text"
