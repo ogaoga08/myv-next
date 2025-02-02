@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import { addPostAction } from "@/lib/actions";
 import { SubmitButton } from "./SubmitButton";
 import { useFormState } from "react-dom";
-import { Star } from "./Star";
+import Rating from "./Star";
 
 export default function PostForm() {
   const initialState = {
@@ -37,6 +37,10 @@ export default function PostForm() {
     formRef.current.reset();
   }
 
+  const onChange = (value: any) => {
+    console.log(value);
+  };
+
   return (
     <div className="m-4">
       <h1 className="font-bold m-2 mb-6 text-gray-900 md:text-2xl text-xl text-left">
@@ -55,7 +59,7 @@ export default function PostForm() {
             name="name"
           />
           <div className="m-4">
-            <Star />
+            <Rating star={2.5} onChange={onChange} withLabel />
           </div>
           <div className="flex w-full mb-4">
             <Input
