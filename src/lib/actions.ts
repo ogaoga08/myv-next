@@ -38,14 +38,24 @@ export async function addPostAction(
 
     const validatedNameText = nameTextSchema.parse(nameText);
 
+    const ratingValue = formData.get("rating") as string;
+    const ratingValueSchema = z
+      .number()
+      .int()
+      .min(0, "Rating must be at least 0")
+      .max(5, "Rating must be at most 5");
+
+    const validatedRatingValue = ratingValueSchema.parse(Number(ratingValue));
+
     // 意図的ローディングタイム
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 700));
 
     await prisma.post.create({
       data: {
         name: validatedNameText,
-        title: "hoge",
+        title: "",
         content: validatedContentText,
+        rating: validatedRatingValue,
         authorId: userId,
       },
     });

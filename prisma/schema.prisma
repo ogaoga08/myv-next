@@ -14,25 +14,26 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  clerkId       String    @unique
-  username      String    @unique
-  name          String?
-  bio           String?
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  posts         Post[]
-  likes         Like[]
-  replies       Reply[]
-  meatLikes     MeatLike[]
+  id        String     @id @default(cuid())
+  clerkId   String     @unique
+  username  String     @unique
+  name      String?
+  bio       String?
+  image     String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  posts     Post[]
+  likes     Like[]
+  replies   Reply[]
+  meatLikes MeatLike[]
 }
 
 model Post {
   id        String   @id @default(cuid())
   name      String
-  title     String
+  title     String?
   content   String
+  rating    Int?
   image     String?
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
@@ -65,27 +66,27 @@ model Reply {
 }
 
 model MeatPart {
-  id          String   @id @default(cuid())
-  name        String   @unique // 部位名 (例: タン)
-  description String   // 説明文
-  softness    Int      // 柔らかさ (1-5)
-  fat         Int      // 脂肪分 (1-5)
-  rare        Int      // 希少度 (1-5)
-  YorO        String   // 用途 (例: yakiniku)
-  position    String   // 部位の位置 (例: head-neck)
-  engName     String   // 英語名
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          String     @id @default(cuid())
+  name        String     @unique // 部位名 (例: タン)
+  description String // 説明文
+  softness    Int // 柔らかさ (1-5)
+  fat         Int // 脂肪分 (1-5)
+  rare        Int // 希少度 (1-5)
+  YorO        String // 用途 (例: yakiniku)
+  position    String // 部位の位置 (例: head-neck)
+  engName     String // 英語名
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
   likes       MeatLike[]
 }
 
 model MeatLike {
-  id        String   @id @default(cuid())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-  meatPart  MeatPart @relation(fields: [meatPartId], references: [id])
+  id         String   @id @default(cuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  meatPart   MeatPart @relation(fields: [meatPartId], references: [id])
   meatPartId String
-  createdAt DateTime @default(now())
+  createdAt  DateTime @default(now())
 
   @@unique([userId, meatPartId])
 }
