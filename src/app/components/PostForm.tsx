@@ -2,7 +2,7 @@
 
 import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import { Input } from "./ui/input";
-import { useRef, useState } from "react";
+import { SetStateAction, useRef, useState } from "react";
 import { addPostAction } from "@/lib/actions";
 import { SubmitButton } from "./SubmitButton";
 import { useFormState } from "react-dom";
@@ -37,7 +37,14 @@ export default function PostForm() {
     formRef.current.reset();
   }
 
-  const onChange = (value: any) => {
+  // const onChange = (value: any) => {
+  //   console.log(value);
+  // };
+
+  const [rating, setRating] = useState(0);
+
+  const handleRatingChange = (value: any) => {
+    setRating(value);
     console.log(value);
   };
 
@@ -57,9 +64,10 @@ export default function PostForm() {
             placeholder="カルビ"
             className="w-28 rounded bg-muted px-4 py-2 text-slate-900"
             name="name"
+            autoComplete="off"
           />
           <div className="m-4">
-            <Rating star={2.5} onChange={onChange} withLabel />
+            <Rating star={rating} onChange={handleRatingChange} withLabel />
           </div>
           <div className="flex w-full mb-4">
             <Input
@@ -67,6 +75,7 @@ export default function PostForm() {
               placeholder="脂が乗って美味しい"
               className="flex-grow rounded bg-muted px-4 py-2 text-slate-900"
               name="content"
+              autoComplete="off"
             />
             <SubmitButton />
           </div>
