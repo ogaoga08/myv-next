@@ -18,7 +18,23 @@ export default function PostForm() {
 
   // useFormStateを使った書き方
   // サーバアクションを使う時に楽にバリデーションチェックができる(React15以降はuseActionState)
-  const [state, formAction] = useFormState(addPostAction, initialState);
+
+  const [rating, setRating] = useState(0);
+
+  const handleRatingChange = (value: number) => {
+    setRating(value);
+    console.log(value);
+  };
+  // ratingの値を含めるために関数をラップする
+  const submitWithRating = async (prevState: any, formData: FormData) => {
+    // ratingの値をFormDataに追加
+    formData.append("rating", rating.toString());
+    return addPostAction(prevState, formData);
+  };
+
+  const [state, formAction] = useFormState(submitWithRating, initialState);
+
+  // const [state, formAction] = useFormState(addPostAction, initialState);
 
   // サーバーアクションの普通の書き方(めんどいね)
   // const hundleSubmit = async (formData: FormData) => {
@@ -35,18 +51,8 @@ export default function PostForm() {
 
   if (state.success && formRef.current) {
     formRef.current.reset();
+    setRating(0);
   }
-
-  // const onChange = (value: any) => {
-  //   console.log(value);
-  // };
-
-  const [rating, setRating] = useState(0);
-
-  const handleRatingChange = (value: any) => {
-    setRating(value);
-    console.log(value);
-  };
 
   return (
     <div className="m-4">
