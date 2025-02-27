@@ -99,13 +99,13 @@ const PostInteraction = ({
       >
         {optimisticLike.count}
       </span>
-      <Button variant="ghost" size="icon">
+      {/* <Button variant="ghost" size="icon">
         <MessageCircleIcon className="h-5 w-5 text-muted-foreground" />
       </Button>
       <span className="text-muted-foreground">{commentNumber}</span>
       <Button variant="ghost" size="icon">
         <Share2Icon className="h-5 w-5 text-muted-foreground" />
-      </Button>
+      </Button> */}
     </div>
   );
 };

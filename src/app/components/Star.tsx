@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 type RatingProps = {
@@ -52,7 +54,7 @@ const Rating = ({
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="-m-2 flex items-center gap-2">
       <div
         className="relative inline-block select-none items-center"
         style={{
