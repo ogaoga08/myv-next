@@ -33,7 +33,7 @@ const Rating = ({
     const half = rect.width / 2;
     let res = amount;
     if (x < half) {
-      res = amount - 0.5;
+      res = amount - 1;
     }
     return res;
   };

@@ -22,19 +22,11 @@ export async function addPostAction(
       return { error: "ログインしてください", success: false };
     }
 
-    const contentText = formData.get("content") as string; //nullは許容されない
-    const contentTextSchema = z
-      .string()
-      .min(2, "contentを入力してください")
-      .max(300, "300字以内で入力してください");
-
-    const validatedContentText = contentTextSchema.parse(contentText);
-
     const nameText = formData.get("name") as string; //nullは許容されない
     const nameTextSchema = z
       .string()
-      .min(1, "nameを入力してください")
-      .max(20, "20字以内で入力してください");
+      .min(2, "部位名を2文字以上で入力してください")
+      .max(15, "15字文以内で入力してください");
 
     const validatedNameText = nameTextSchema.parse(nameText);
 
@@ -47,6 +39,13 @@ export async function addPostAction(
 
     const validatedRatingValue = ratingValueSchema.parse(Number(ratingValue));
 
+    const contentText = formData.get("content") as string; //nullは許容されない
+    const contentTextSchema = z
+      .string()
+      .min(2, "contentを入力してください")
+      .max(300, "300字以内で入力してください");
+
+    const validatedContentText = contentTextSchema.parse(contentText);
     // 意図的ローディングタイム
     await new Promise((resolve) => setTimeout(resolve, 700));
 
