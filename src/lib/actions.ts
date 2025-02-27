@@ -26,24 +26,22 @@ export async function addPostAction(
     const nameTextSchema = z
       .string()
       .min(2, "部位名を2文字以上で入力してください")
-      .max(15, "15字文以内で入力してください");
+      .max(15, "部位名は15字文以内で入力してください");
 
     const validatedNameText = nameTextSchema.parse(nameText);
 
     const ratingValue = formData.get("rating") as string;
     const ratingValueSchema = z
       .number()
-      .int()
-      .min(0, "Rating must be at least 0")
-      .max(5, "Rating must be at most 5");
+      .positive("星は1以上で入力してください");
 
     const validatedRatingValue = ratingValueSchema.parse(Number(ratingValue));
 
     const contentText = formData.get("content") as string; //nullは許容されない
     const contentTextSchema = z
       .string()
-      .min(2, "contentを入力してください")
-      .max(300, "300字以内で入力してください");
+      .min(2, "本文を入力してください")
+      .max(300, "本文は300字以内で入力してください");
 
     const validatedContentText = contentTextSchema.parse(contentText);
     // 意図的ローディングタイム
