@@ -16,8 +16,8 @@ export function SubmitButton() {
         disabled={pending}
         className={`${pending && "cursor-not-allowed"}`}
       >
+        {/* <span className="text-lg ml-6 font-bold text-gray-600">投稿</span> */}
         <SendIcon className="h-5 w-5 text-muted-foreground" />
-        <span className="sr-only">投稿</span>
       </Button>
     </>
   );

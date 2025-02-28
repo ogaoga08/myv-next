@@ -7,6 +7,7 @@ import { addPostAction } from "@/lib/actions";
 import { SubmitButton } from "./SubmitButton";
 import { useFormState } from "react-dom";
 import Rating from "./Star";
+import { Textarea } from "./ui/textarea";
 
 export default function PostForm() {
   const initialState = {
@@ -19,7 +20,7 @@ export default function PostForm() {
   // useFormStateを使った書き方
   // サーバアクションを使う時に楽にバリデーションチェックができる(React15以降はuseActionState)
 
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(3);
 
   const handleRatingChange = (value: number) => {
     setRating(value);
@@ -73,17 +74,19 @@ export default function PostForm() {
             autoComplete="off"
           />
           <div className="m-4">
-            <Rating star={rating} onChange={handleRatingChange} withLabel />
+            <Rating star={rating} onChange={handleRatingChange} />
           </div>
           <div className="flex w-full mb-4">
-            <Input
-              type="text"
+            <Textarea
+              // type="text"
               placeholder="脂が乗って美味しい"
               className="flex-grow rounded bg-muted px-4 py-2 text-slate-900"
               name="content"
               autoComplete="off"
             />
-            <SubmitButton />
+            <div className="mt-10">
+              <SubmitButton />
+            </div>
           </div>
         </form>
       </div>
