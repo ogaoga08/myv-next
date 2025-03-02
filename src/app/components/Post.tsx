@@ -4,6 +4,7 @@ import { ClockIcon } from "./Icons";
 import PostInteraction from "./PostInteraction";
 import Link from "next/link";
 import Rating from "./Star";
+import React from "react";
 
 export default function Post({ post }: any) {
   return (
@@ -27,7 +28,14 @@ export default function Post({ post }: any) {
           <Rating star={post.rating} readOnly size={20} />
         </div>
         <div className="">
-          <p>{post.content}</p>
+          <p>
+            {post.content.split("\n").map((line: string, index: number) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
+          </p>
         </div>
       </div>
       <div className="flex items-center justify-between mt-4">
