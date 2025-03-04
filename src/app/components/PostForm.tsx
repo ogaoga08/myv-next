@@ -8,6 +8,7 @@ import { SubmitButton } from "./SubmitButton";
 import { useFormState } from "react-dom";
 import Rating from "./Star";
 import { Textarea } from "./ui/textarea";
+import { ComboboxDemo } from "./Combobox";
 
 export default function PostForm() {
   const initialState = {
@@ -66,13 +67,14 @@ export default function PostForm() {
           action={formAction}
           className="flex flex-col items-start"
         >
-          <Input
+          {/* <Input
             type="text"
             placeholder="カルビ"
             className="w-28 rounded bg-muted px-4 py-2 text-slate-900"
             name="name"
             autoComplete="off"
-          />
+          /> */}
+          <ComboboxDemo />
           <div className="m-4">
             <Rating star={rating} onChange={handleRatingChange} />
           </div>
@@ -91,7 +93,7 @@ export default function PostForm() {
         </form>
       </div>
       {state.error && (
-        <p className="text-destructive mt-1 ml-14">{state.error}</p>
+        <p className="text-destructive m-4 font-bold">{state.error}</p>
       )}
     </div>
   );
