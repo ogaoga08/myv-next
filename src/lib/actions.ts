@@ -22,11 +22,8 @@ export async function addPostAction(
       return { error: "ログインしてください", success: false };
     }
 
-    const nameText = formData.get("value") as string; //nullは許容されない
-    const nameTextSchema = z
-      .string()
-      .min(2, "部位名を2文字以上で入力してください")
-      .max(15, "部位名は15字文以内で入力してください");
+    const nameText = formData.get("name") as string; //nullは許容されない
+    const nameTextSchema = z.string().nonempty("部位名を入力してください");
 
     const validatedNameText = nameTextSchema.parse(nameText);
 

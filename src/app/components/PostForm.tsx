@@ -22,19 +22,27 @@ export default function PostForm() {
   // サーバアクションを使う時に楽にバリデーションチェックができる(React15以降はuseActionState)
 
   const [rating, setRating] = useState(3);
+  const [selectedName, setSelectedName] = useState("");
 
   const handleRatingChange = (value: number) => {
     setRating(value);
     console.log(value);
   };
+
+  const handleNameChange = (value: string) => {
+    setSelectedName(value);
+    console.log("Selected Name:", value);
+  };
+
   // ratingの値を含めるために関数をラップする
-  const submitWithRating = async (prevState: any, formData: FormData) => {
+  // ratingとselectedValueの値を含めるために関数をラップする
+  const submitWithValues = async (prevState: any, formData: FormData) => {
     // ratingの値をFormDataに追加
     formData.append("rating", rating.toString());
     return addPostAction(prevState, formData);
   };
 
-  const [state, formAction] = useFormState(submitWithRating, initialState);
+  const [state, formAction] = useFormState(submitWithValues, initialState);
 
   // const [state, formAction] = useFormState(addPostAction, initialState);
 
@@ -53,7 +61,8 @@ export default function PostForm() {
 
   if (state.success && formRef.current) {
     formRef.current.reset();
-    setRating(0);
+    setRating(3);
+    setSelectedName("");
   }
 
   return (
@@ -74,14 +83,14 @@ export default function PostForm() {
             name="name"
             autoComplete="off"
           /> */}
-          <ComboboxDemo />
+          <ComboboxDemo onChange={handleNameChange} />
           <div className="m-4">
             <Rating star={rating} onChange={handleRatingChange} />
           </div>
           <div className="flex w-full mb-4">
             <Textarea
               // type="text"
-              placeholder="脂が乗って美味しい"
+              placeholder="脂が乗って美味しい！"
               className="flex-grow rounded bg-muted px-4 py-2 text-slate-900"
               name="content"
               autoComplete="off"
