@@ -5,6 +5,7 @@ import PartsTable from "./components/foods/table";
 import { ImageComponent } from "./components/ImageComponent";
 import ReviewList from "./components/ReviewList";
 import PostList from "./components/PostList";
+import PostForm from "./components/PostForm";
 
 export default async function Home({
   searchParams,
@@ -22,7 +23,9 @@ export default async function Home({
         <div className="bg-white shadow-md rounded mt-4 w-full flex justify-center items-center">
           <ImageComponent src="/cattle.svg" />
         </div>
-        <ReviewList />
+        <div className="bg-white shadow-md rounded mt-4 w-full flex ">
+          <PostForm />
+        </div>
       </section>
       <aside className="w-full md:w-1/3 flex flex-col px-3 mt-4">
         <div className="">
