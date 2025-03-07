@@ -9,6 +9,16 @@ import { useFormState } from "react-dom";
 import Rating from "./Star";
 import { Textarea } from "./ui/textarea";
 import { ComboboxDemo } from "./Combobox";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import { Button } from "./ui/button";
 
 export default function PostForm() {
   const initialState = {
@@ -21,17 +31,16 @@ export default function PostForm() {
   // useFormStateを使った書き方
   // サーバアクションを使う時に楽にバリデーションチェックができる(React15以降はuseActionState)
 
+  const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(3);
   const [selectedName, setSelectedName] = useState("");
 
   const handleRatingChange = (value: number) => {
     setRating(value);
-    console.log(value);
   };
 
   const handleNameChange = (value: string) => {
     setSelectedName(value);
-    console.log("Selected Name:", value);
   };
 
   // ratingの値を含めるために関数をラップする
@@ -39,7 +48,15 @@ export default function PostForm() {
   const submitWithValues = async (prevState: any, formData: FormData) => {
     // ratingの値をFormDataに追加
     formData.append("rating", rating.toString());
-    return addPostAction(prevState, formData);
+    formData.append("selectedName", selectedName);
+    const result = await addPostAction(prevState, formData);
+
+    if (result.success) {
+      // Close dialog on success
+      setOpen(false);
+    }
+
+    return result;
   };
 
   const [state, formAction] = useFormState(submitWithValues, initialState);
@@ -66,44 +83,78 @@ export default function PostForm() {
   }
 
   return (
-    <div className="m-4">
-      <h1 className="font-bold m-2 mb-6 text-gray-900 md:text-2xl text-xl text-left">
-        口コミを投稿する
-      </h1>
-      <div className="flex flex-col gap-4">
-        <form
-          ref={formRef}
-          action={formAction}
-          className="flex flex-col items-start"
-        >
-          {/* <Input
-            type="text"
-            placeholder="カルビ"
-            className="w-28 rounded bg-muted px-4 py-2 text-slate-900"
-            name="name"
-            autoComplete="off"
-          /> */}
-          <ComboboxDemo onChange={handleNameChange} />
-          <div className="m-4">
-            <Rating star={rating} onChange={handleRatingChange} />
-          </div>
-          <div className="flex w-full mb-4">
-            <Textarea
-              // type="text"
-              placeholder="脂が乗って美味しい！"
-              className="flex-grow rounded bg-muted px-4 py-2 text-slate-900"
-              name="content"
-              autoComplete="off"
-            />
-            <div className="mt-10">
-              <SubmitButton />
+    <div>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button variant="default" className="px-8 py-4 font-bold">
+            口コミを投稿する！
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="font-bold text-xl text-gray-900">
+              口コミを投稿する
+            </DialogTitle>
+            <DialogDescription>
+              みんなに美味しかった部位を紹介しましょう。
+            </DialogDescription>
+          </DialogHeader>
+
+          <form ref={formRef} action={formAction} className="mt-4 space-y-6">
+            <div className="space-y-4">
+              <div className="z-50 relative">
+                <ComboboxDemo onChange={handleNameChange} />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="rating"
+                  className="text-sm font-medium block mb-2"
+                >
+                  評価
+                </label>
+                <div className="mb-4 px-3">
+                  <Rating star={rating} onChange={handleRatingChange} />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="content"
+                  className="text-sm font-medium block mb-2"
+                >
+                  感想
+                </label>
+                <Textarea
+                  id="content"
+                  placeholder="脂が乗って美味しい！"
+                  className="w-full bg-muted text-slate-900"
+                  name="content"
+                  autoComplete="off"
+                  rows={4}
+                />
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
-      {state.error && (
-        <p className="text-destructive m-4 font-bold">{state.error}</p>
-      )}
+
+            {state.error && (
+              <p className="text-destructive font-medium text-sm">
+                {state.error}
+              </p>
+            )}
+
+            <DialogFooter>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setOpen(false)}
+              >
+                キャンセル
+              </Button>
+              <SubmitButton />
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

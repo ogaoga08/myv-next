@@ -23,7 +23,7 @@ export default async function Home({
         <div className="bg-white shadow-md rounded mt-4 w-full flex justify-center items-center">
           <ImageComponent src="/cattle.svg" />
         </div>
-        <div className="bg-white shadow-md rounded mt-4 w-full flex ">
+        <div className="m-4">
           <PostForm />
         </div>
       </section>
