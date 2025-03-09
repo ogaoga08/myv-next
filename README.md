@@ -1,3 +1,21 @@
+### 開発メモ
+
+- 部位 DB を Supabase 移行
+  - MeatParts テーブルの改善(お気に入り機能・お気に入り数)
+- 各部位ページに口コミ表示
+- 部位お気に入り機能
+- マイページ改善
+- アイコンからマイページ飛べるように clerk 改善
+- メインページに人気の部位ランキング表示
+
+-検索機能に AI 検索 -ブランドカラー変更
+
+# This is "myv" app
+
+好きな"部位"を探せる焼肉データベースです。
+
+````
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -34,3 +52,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+````
