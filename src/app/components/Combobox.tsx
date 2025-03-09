@@ -154,7 +154,7 @@ export function ComboboxDemo({ onChange }: ComboboxDemoProps) {
   return (
     <div className="relative">
       <input type="hidden" name="name" value={value} />
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover open={open} onOpenChange={setOpen} modal={true}>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
