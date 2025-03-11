@@ -86,7 +86,7 @@ export default function PostForm() {
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="default" className="px-8 py-4 font-bold">
+          <Button variant="default" className="px-8 py-5 font-bold">
             口コミを投稿する！
           </Button>
         </DialogTrigger>
