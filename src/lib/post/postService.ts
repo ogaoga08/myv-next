@@ -1,4 +1,3 @@
-import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
 //home timeline
@@ -29,7 +28,6 @@ export async function fetchPosts(userId: string | null, username?: string) {
     });
   }
 
-  // 全ての投稿を取得する
   return await prisma.post.findMany({
     include: {
       author: true,

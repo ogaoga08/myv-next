@@ -27,16 +27,14 @@ export default function Post({ post }: any) {
         <div className="mb-4 px-1">
           <Rating star={post.rating} readOnly size={20} />
         </div>
-        <div className="">
-          <p>
-            {post.content.split("\n").map((line: string, index: number) => (
-              <React.Fragment key={index}>
-                {line}
-                <br />
-              </React.Fragment>
-            ))}
-          </p>
-        </div>
+        <p>
+          {post.content.split("\n").map((line: string, index: number) => (
+            <React.Fragment key={index}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
+        </p>
       </div>
       <div className="flex items-center justify-between mt-4">
         <div className="flex items-center gap-2">

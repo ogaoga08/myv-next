@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import PostList from "@/app/components/PostList";
 import PostForm from "@/app/components/PostForm";
 import BackButton from "@/app/components/BackButton";
+import Rating from "@/app/components/Star";
 
 export default async function Page({ params }: { params: { name: string } }) {
   // URLパスからパラメータを取得（この場合、nameパラメータは実際にはengNameを表している）
@@ -20,7 +21,7 @@ export default async function Page({ params }: { params: { name: string } }) {
     return notFound();
   }
 
-  console.log(`Found part with engName: ${part.engName}, name: ${part.name}`);
+  // console.log(`Found part with engName: ${part.engName}, name: ${part.name}`);
 
   return (
     <div className="md:flex">
@@ -33,27 +34,48 @@ export default async function Page({ params }: { params: { name: string } }) {
             {part.name}
           </h1>
           <p className="text-gray-800">{part.description}</p>
-          <ul className="font-bold text-teal-950 my-2">
-            <li>柔らかさ: {part.softness}</li>
-            <li>脂肪分: {part.fat}</li>
-            <li>希少度: {part.rare}</li>
-            <li>用途: {part.YorO}</li>
-            <li>部位の位置: {part.position}</li>
-            <li>英語名: {part.engName}</li>
+          <ul className="font-bold text-teal-950 mt-4 flex flex-col md:flex-row flex-wrap gap-2">
+            <li className="flex items-center">
+              <span className="bg-emerald-500 text-white p-2 px-5 rounded-full flex items-center">
+                柔らかさ
+                <div className="ml-3">
+                  <Rating star={part.softness} readOnly size={18} />
+                </div>
+              </span>
+            </li>
+            <li className="flex items-center">
+              <span className="bg-emerald-500 text-white p-2 px-5 rounded-full flex items-center">
+                脂肪分　
+                <div className="ml-3">
+                  <Rating star={part.fat} readOnly size={18} />
+                </div>
+              </span>
+            </li>
+            <li className="flex items-center">
+              <span className="bg-emerald-500 text-white p-2 px-5 rounded-full flex items-center">
+                希少度　
+                <div className="ml-3">
+                  <Rating star={part.rare} readOnly size={18} />
+                </div>
+              </span>
+            </li>
           </ul>
         </div>
       </section>
-      <aside className="w-full md:w-1/3 flex flex-col px-3 mt-4">
-        <div className="flex space-x-4">
-          <PostForm />
-          <BackButton />
-        </div>
-        <div className="pt-6">
+      <aside className="w-full md:w-1/3 flex flex-col px-3">
+        <div className="pt-3">
+          <h1 className="font-bold m-2 text-teal-950 md:text-xl text-left">
+            /焼肉/頭から首/{part.name}
+          </h1>
+          <div className="flex space-x-6 mb-8">
+            <PostForm />
+            <BackButton />
+          </div>
           <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
             最近の口コミ
           </h1>
           <div className="flex-1 max-h-screen shadow-inner rounded-md overflow-y-auto">
-            <PostList />
+            <PostList meatPartName={part.name} />
           </div>
         </div>
       </aside>
