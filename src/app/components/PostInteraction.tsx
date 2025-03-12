@@ -7,11 +7,10 @@ import React, {
   useState,
   useTransition,
 } from "react";
-import { HeartIcon, MessageCircleIcon, Share2Icon } from "./Icons";
+import { HeartIcon } from "./Icons";
 import { Button } from "./ui/button";
 import { likeAction } from "@/lib/actions";
 import { useAuth } from "@clerk/nextjs";
-import { useFormState } from "react-dom";
 
 interface LikeState {
   count: number;

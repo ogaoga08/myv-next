@@ -7,6 +7,7 @@ const parts = [
     fat: 3,
     rare: 5,
     engname: "tongue",
+    jpnname: "たん",
     route: "/yakiniku/head-neck/tongue",
   },
   {
@@ -17,6 +18,7 @@ const parts = [
     fat: 2,
     rare: 3,
     engname: "neck",
+    jpnname: "ねっく",
     route: "/yakiniku/head-neck/neck",
   },
   {
@@ -27,6 +29,7 @@ const parts = [
     fat: 4,
     rare: 4,
     engname: "misuji",
+    jpnname: "みすじ",
     route: "/yakiniku/shoulder/misuji",
   },
   {
@@ -37,6 +40,7 @@ const parts = [
     fat: 3,
     rare: 3,
     engname: "katasankaku",
+    jpnname: "かたさんかく",
     route: "/yakiniku/shoulder/katasankaku",
   },
   {
@@ -47,6 +51,7 @@ const parts = [
     fat: 5,
     rare: 5,
     engname: "zabuton",
+    jpnname: "ざぶとん",
     route: "/yakiniku/shoulder/zabuton",
   },
   {
@@ -57,6 +62,7 @@ const parts = [
     fat: 4,
     rare: 5,
     engname: "sirloin",
+    jpnname: "さーろいん",
     route: "/yakiniku/back/sirloin",
   },
   {
@@ -67,6 +73,7 @@ const parts = [
     fat: 4,
     rare: 4,
     engname: "ribeye",
+    jpnname: "りぶろーす",
     route: "/yakiniku/back/ribeye",
   },
   {
@@ -77,6 +84,7 @@ const parts = [
     fat: 2,
     rare: 5,
     engname: "tenderloin",
+    jpnname: "ひれ",
     route: "/yakiniku/back/tenderloin",
   },
   {
@@ -87,6 +95,7 @@ const parts = [
     fat: 2,
     rare: 5,
     engname: "chateaubriand",
+    jpnname: "しゃとーぶりあん",
     route: "/yakiniku/back/chateaubriand",
   },
   {
@@ -97,6 +106,7 @@ const parts = [
     fat: 4,
     rare: 4,
     engname: "short-rib(karubi)",
+    jpnname: "たてばら(かるび)",
     route: "/yakiniku/chest-belly/short-rib(karubi)",
   },
   {
@@ -107,6 +117,7 @@ const parts = [
     fat: 4,
     rare: 3,
     engname: "flap-meat",
+    jpnname: "かいのみ",
     route: "/yakiniku/chest-belly/flap-meat",
   },
   {
@@ -117,6 +128,7 @@ const parts = [
     fat: 5,
     rare: 3,
     engname: "sankakubara",
+    jpnname: "さんかくばら(とくじょうかるび)",
     route: "/yakiniku/chest-belly/sankakubara",
   },
   {
@@ -127,6 +139,7 @@ const parts = [
     fat: 2,
     rare: 4,
     engname: "rump",
+    jpnname: "らんぷ",
     route: "/yakiniku/round/rump",
   },
   {
@@ -137,6 +150,7 @@ const parts = [
     fat: 3,
     rare: 4,
     engname: "ichibo",
+    jpnname: "いちぼ",
     route: "/yakiniku/round/ichibo",
   },
   {
@@ -147,6 +161,7 @@ const parts = [
     fat: 2,
     rare: 3,
     engname: "shikinbo",
+    jpnname: "しきんぼ",
     route: "/yakiniku/round/shikinbo",
   },
   {
@@ -157,6 +172,7 @@ const parts = [
     fat: 2,
     rare: 3,
     engname: "shinshin",
+    jpnname: "しんしん",
     route: "/yakiniku/round/shinshin",
   },
   {
@@ -167,6 +183,7 @@ const parts = [
     fat: 1,
     rare: 5,
     engname: "hatsu",
+    jpnname: "はつ",
     route: "/offal/head-chest/hatsu",
   },
   {
@@ -177,6 +194,7 @@ const parts = [
     fat: 2,
     rare: 3,
     engname: "tsurami",
+    jpnname: "つらみ",
     route: "/offal/head-chest/tsurami",
   },
   {
@@ -187,6 +205,7 @@ const parts = [
     fat: 1,
     rare: 3,
     engname: "urute",
+    jpnname: "うるて",
     route: "/offal/head-chest/urute",
   },
   {
@@ -197,6 +216,7 @@ const parts = [
     fat: 3,
     rare: 3,
     engname: "shibire",
+    jpnname: "しびれ",
     route: "/offal/head-chest/shibire",
   },
   {
@@ -207,6 +227,7 @@ const parts = [
     fat: 1,
     rare: 4,
     engname: "senmai",
+    jpnname: "せんまい",
     route: "/offal/stomach/senmai",
   },
   {
@@ -217,6 +238,7 @@ const parts = [
     fat: 1,
     rare: 3,
     engname: "hachinosu",
+    jpnname: "はちのす",
     route: "/offal/stomach/hachinosu",
   },
   {
@@ -227,6 +249,7 @@ const parts = [
     fat: 2,
     rare: 3,
     engname: "mino",
+    jpnname: "みの",
     route: "/offal/stomach/mino",
   },
   {
@@ -237,6 +260,7 @@ const parts = [
     fat: 3,
     rare: 4,
     engname: "harami(sagari)",
+    jpnname: "はらみ(さがり)",
     route: "/offal/abdomen/harami(sagari)",
   },
   {
@@ -247,6 +271,7 @@ const parts = [
     fat: 2,
     rare: 4,
     engname: "liver",
+    jpnname: "ればー",
     route: "/offal/abdomen/liver",
   },
   {
@@ -257,6 +282,7 @@ const parts = [
     fat: 5,
     rare: 3,
     engname: "himo(marucho)",
+    jpnname: "ひも(まるちょう)",
     route: "/offal/abdomen/himo(marucho)",
   },
   {
@@ -267,6 +293,7 @@ const parts = [
     fat: 5,
     rare: 3,
     engname: "shimacho",
+    jpnname: "しまちょう",
     route: "/offal/abdomen/shimacho",
   },
   {
@@ -277,6 +304,7 @@ const parts = [
     fat: 3,
     rare: 3,
     engname: "mame",
+    jpnname: "まめ",
     route: "/offal/abdomen/mame",
   },
 ];

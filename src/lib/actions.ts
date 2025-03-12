@@ -82,6 +82,7 @@ export async function addPostAction(
   }
 }
 
+// 口コミいいね機能
 export const likeAction = async (
   formData: FormData
   // postId: string
@@ -125,5 +126,125 @@ export const likeAction = async (
     }
   } catch (err) {
     console.log(err);
+  }
+};
+
+// 部位お気に入り機能
+export const meatPartLikeAction = async (formData: FormData) => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    return {
+      likes: [],
+      error: "アカウントが認証されていません(User is not authenticated)",
+    };
+  }
+
+  const meatPartId = formData.get("meatPartId") as string;
+
+  try {
+    const existingLike = await prisma.meatLike.findFirst({
+      where: {
+        meatPartId,
+        userId,
+      },
+    });
+
+    if (existingLike) {
+      // お気に入りが既に存在する場合は削除（いいね解除）
+      await prisma.meatLike.delete({
+        where: {
+          id: existingLike.id,
+        },
+      });
+
+      revalidatePath("/meat-parts");
+      revalidatePath(`/meat-parts/${meatPartId}`);
+    } else {
+      // お気に入りが存在しない場合は新規作成
+      await prisma.meatLike.create({
+        data: {
+          meatPartId,
+          userId,
+        },
+      });
+
+      revalidatePath("/meat-parts");
+      revalidatePath(`/meat-parts/${meatPartId}`);
+    }
+
+    return { success: true };
+  } catch (err) {
+    console.error(err);
+    return {
+      success: false,
+      error: "お気に入り処理中にエラーが発生しました",
+    };
+  }
+};
+
+// ユーザーがお気に入りした部位の一覧を取得する関数
+export const getUserLikedMeatParts = async () => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    return [];
+  }
+
+  try {
+    const userWithLikes = await prisma.user.findUnique({
+      where: {
+        clerkId: userId,
+      },
+      include: {
+        meatLikes: {
+          include: {
+            meatPart: true,
+          },
+        },
+      },
+    });
+
+    if (!userWithLikes) {
+      return [];
+    }
+
+    return userWithLikes.meatLikes.map((like) => like.meatPart);
+  } catch (error) {
+    console.error("Error fetching liked meat parts:", error);
+    return [];
+  }
+};
+
+// 特定の部位がお気に入り済みかをチェックする関数
+export const isUserLikedMeatPart = async (meatPartId: string) => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    return false;
+  }
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        clerkId: userId,
+      },
+    });
+
+    if (!user) {
+      return false;
+    }
+
+    const like = await prisma.meatLike.findFirst({
+      where: {
+        userId: user.id,
+        meatPartId,
+      },
+    });
+
+    return !!like;
+  } catch (error) {
+    console.error("Error checking if meat part is liked:", error);
+    return false;
   }
 };
