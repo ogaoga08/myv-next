@@ -170,7 +170,8 @@ export function ComboboxDemo({ onChange }: ComboboxDemoProps) {
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
           <Command>
-            <CommandInput placeholder="部位を選択..." className="h-9" />
+            {/* iPhoneだとキーボード出てきてユーザビリティ悪いため */}
+            {/* <CommandInput placeholder="部位を選択..." className="h-9" /> */}
             <CommandList>
               <CommandEmpty>その部位はありません</CommandEmpty>
               <CommandGroup>

@@ -53,7 +53,9 @@ export default function MeatPartLikeButton({
         strokeWidth={2}
         color={`${isLiked ? "#FFC800" : "black"}`}
       />
-      {/* <span>{count}</span> */}
+      <span className={`${isLiked ? "text-yellow-400" : "text-slate-500"}`}>
+        {count}
+      </span>
     </button>
   );
 }
