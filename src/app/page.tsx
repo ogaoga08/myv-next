@@ -48,7 +48,7 @@ export default async function Home({
           <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
             最近の口コミ
           </h1>
-          <div className="flex-1 max-h-screen shadow-inner rounded-md overflow-y-auto">
+          <div className="flex-1 max-h-96 shadow-inner rounded-md overflow-y-auto">
             <PostList />
           </div>
         </div>
