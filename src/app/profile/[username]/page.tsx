@@ -74,7 +74,6 @@ export default async function ProfilePage({ params }: Props) {
     orderBy: {
       createdAt: "desc",
     },
-    take: 6, // 最新の6件を表示
   });
 
   return (
