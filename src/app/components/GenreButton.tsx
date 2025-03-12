@@ -4,10 +4,10 @@ import Link from "next/link";
 
 const GenreButton = () => {
   return (
-    <div className="my-4 flex">
+    <div className="mb-4 flex flex-col 2xl:flex-row">
       <Menu
         as="div"
-        className="relative inline-block text-left m-4 flex-1 min-w-[150px]"
+        className="relative inline-block text-left m-4 flex-1 min-w-[130px]"
       >
         <div>
           <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-red-700 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-yellow-950 hover:opacity-75">

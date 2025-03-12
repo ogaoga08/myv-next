@@ -38,19 +38,17 @@ export default async function Home({
           </h1>
           <ChoiceButton />
         </div>
-        <div className="pt-6">
-          <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
-            特徴で探す
-          </h1>
-          <GenreButton />
-        </div>
-        <div className="pt-6">
-          <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
-            最近の口コミ
-          </h1>
-          <div className="flex-1 max-h-96 shadow-inner rounded-md overflow-y-auto">
-            <PostList />
-          </div>
+
+        <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
+          特徴で探す
+        </h1>
+        <GenreButton />
+
+        <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
+          最近の口コミ
+        </h1>
+        <div className="flex-1 rounded-md overflow-y-auto max-h-[450px]">
+          <PostList />
         </div>
       </aside>
     </div>

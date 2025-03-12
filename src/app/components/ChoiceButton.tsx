@@ -430,7 +430,7 @@ const ChoiceButton = () => {
       );
     default:
       return (
-        <div className="my-4 flex flex-wrap justify-center">
+        <div className="mb-4 flex flex-wrap justify-center">
           <div className="m-4 flex-1 min-w-[150px]">
             <Link
               href={`/yakiniku`}
