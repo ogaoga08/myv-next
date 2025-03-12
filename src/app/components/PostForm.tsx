@@ -143,13 +143,6 @@ export default function PostForm() {
             )}
 
             <DialogFooter>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setOpen(false)}
-              >
-                キャンセル
-              </Button>
               <SubmitButton />
             </DialogFooter>
           </form>

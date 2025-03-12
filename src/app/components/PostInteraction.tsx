@@ -80,7 +80,7 @@ const PostInteraction = ({
         action={handleLikeSubmit}
       >
         <input type="hidden" name="postId" value={postId} />
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" className="hover:bg-slate-200">
           <Heart
             className={` ${
               optimisticLike.isLiked

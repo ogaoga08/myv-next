@@ -14,7 +14,7 @@ export function SubmitButton() {
         variant="ghost"
         size="icon"
         disabled={pending}
-        className={`${pending && "cursor-not-allowed"}`}
+        className={`hover:bg-slate-200 ${pending && "cursor-not-allowed"}`}
       >
         {/* <span className="text-lg ml-6 font-bold text-gray-600">投稿</span> */}
         <SendIcon className="h-5 w-5 text-muted-foreground" />
