@@ -6,6 +6,8 @@ import PostList from "@/app/components/PostList";
 import PostForm from "@/app/components/PostForm";
 import BackButton from "@/app/components/BackButton";
 import Rating from "@/app/components/Star";
+import { isUserLikedMeatPart } from "@/lib/actions";
+import MeatPartLikeButton from "@/app/components/PartInteraction";
 
 export default async function Page({ params }: { params: { name: string } }) {
   // URLパスからパラメータを取得（この場合、nameパラメータは実際にはengNameを表している）
@@ -21,6 +23,15 @@ export default async function Page({ params }: { params: { name: string } }) {
     return notFound();
   }
 
+  // いいね情報を取得
+  const meatPartWithLikes = await prisma.meatPart.findUnique({
+    where: { id: part.id },
+    include: { likes: true },
+  });
+
+  const isLiked = await isUserLikedMeatPart(part.id);
+  const likeCount = meatPartWithLikes?.likes.length || 0;
+
   // console.log(`Found part with engName: ${part.engName}, name: ${part.name}`);
 
   return (
@@ -30,9 +41,16 @@ export default async function Page({ params }: { params: { name: string } }) {
           <ImageComponent src="/cattle_y_head.svg" />
         </div>
         <div className="bg-white shadow-md rounded p-4 mt-4 w-full">
-          <h1 className="font-bold text-gray-950 text-xl md:text-2xl mb-2">
-            {part.name}
-          </h1>
+          <div className="flex justify-between items-center mb-2">
+            <h1 className="font-bold text-gray-950 text-xl md:text-2xl mb-2">
+              {part.name}
+            </h1>
+            <MeatPartLikeButton
+              meatPartId={part.id}
+              initialIsLiked={isLiked}
+              likeCount={likeCount}
+            />
+          </div>
           <p className="text-gray-800">{part.description}</p>
           <ul className="font-bold text-teal-950 mt-4 flex flex-col md:flex-row flex-wrap gap-2">
             <li className="flex items-center">

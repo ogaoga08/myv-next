@@ -11,6 +11,7 @@ import { HeartIcon } from "./Icons";
 import { Button } from "./ui/button";
 import { likeAction } from "@/lib/actions";
 import { useAuth } from "@clerk/nextjs";
+import { Heart, HeartPulseIcon } from "lucide-react";
 
 interface LikeState {
   count: number;
@@ -80,14 +81,13 @@ const PostInteraction = ({
       >
         <input type="hidden" name="postId" value={postId} />
         <Button variant="ghost" size="icon">
-          <HeartIcon
-            className={`h-5 w-5 ${
+          <Heart
+            className={` ${
               optimisticLike.isLiked
-                ? "text-destructive"
+                ? "text-destructive fill-red-500"
                 : "text-muted-foreground"
             }`}
-            fill={optimisticLike.isLiked ? "currentColor" : "none"}
-            stroke={optimisticLike.isLiked ? "none" : "currentColor"}
+            stroke={optimisticLike.isLiked ? "red" : "currentColor"}
           />
         </Button>
       </form>
