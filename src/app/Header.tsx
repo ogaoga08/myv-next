@@ -1,6 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignOutButton,
+  UserButton,
+  UserProfile,
+} from "@clerk/nextjs";
 
 const Header = () => {
   return (
@@ -18,6 +24,8 @@ const Header = () => {
       </SignedOut>
       <SignedIn>
         <UserButton />
+        {/* <UserProfile /> */}
+        {/* <SignOutButton /> */}
       </SignedIn>
     </header>
   );
