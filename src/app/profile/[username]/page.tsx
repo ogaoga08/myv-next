@@ -81,7 +81,7 @@ export default async function ProfilePage({ params }: Props) {
       <section className="w-full md:w-2/3 flex flex-col px-3 md:pl-6">
         {/* プロフィール情報 */}
         <div className="bg-white shadow-md rounded p-4 mt-4 w-full">
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div className="flex flex-col md:flex-row items-center gap-6">
             <Avatar className="w-24 h-24">
               <AvatarImage
                 src={user.image || "/placeholder-user.jpg"}
@@ -96,8 +96,10 @@ export default async function ProfilePage({ params }: Props) {
               <h1 className="text-3xl font-extrabold">
                 {user.name || user.username}
               </h1>
-              <div className="text-gray-500">@{user.username}</div>
-              {user.bio && <p className="mt-2 text-gray-700">{user.bio}</p>}
+              <div className="text-gray-500 md:text-start text-center">
+                @{user.username}
+              </div>
+              {/* {user.bio && <p className="mt-2 text-gray-700">{user.bio}</p>} */}
             </div>
 
             <div className="flex gap-4 flex-wrap">
