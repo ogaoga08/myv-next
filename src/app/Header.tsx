@@ -1,11 +1,13 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   SignedIn,
   SignedOut,
   SignOutButton,
-  UserButton,
   UserProfile,
+  useUser,
 } from "@clerk/nextjs";
 import {
   Sheet,
@@ -16,17 +18,22 @@ import {
   SheetFooter,
 } from "./components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "./components/ui/avatar";
-import { auth, currentUser } from "@clerk/nextjs/server";
 import { Button } from "./components/ui/button";
-import { HomeIcon, UserIcon, SettingsIcon, LogOutIcon } from "lucide-react";
+import { UserIcon, SettingsIcon, LogOutIcon } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "./components/ui/dialog";
 
-const Header = async () => {
-  // const { userId } = auth();
-  const user = await currentUser();
+const Header = () => {
+  const [isSheetOpen, setSheetOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { user } = useUser();
+
+  const handleLinkClick = () => {
+    setSheetOpen(false);
+  };
 
   return (
     <header
-      className="py-5 px-10 border-b flex justify-between items-center text-slate-50 bg-red-700 fixed top-0 left-0 w-full z-50"
+      className="py-5 px-10 min-h-20 flex justify-between items-center text-slate-50 bg-red-700 fixed w-full z-50"
       style={{ paddingTop: "calc(env(safe-area-inset-top) + 1.25rem)" }}
     >
       <div>
@@ -35,15 +42,17 @@ const Header = async () => {
         </h1>
       </div>
       <SignedOut>
-        <Link href={"/sign-in"}>サインイン</Link>
+        <Link href={"/sign-in"} className="font-bold">
+          サインイン
+        </Link>
       </SignedOut>
       <SignedIn>
-        <Sheet>
+        <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" className="rounded-full p-0 h-10 w-10">
+            <Button variant="ghost" className="rounded-full p-0">
               <Avatar className="h-10 w-10">
                 <AvatarImage
-                  src={user?.imageUrl || "/placeholder-user.jpg"}
+                  src={user?.imageUrl}
                   alt={`${user?.username || "ユーザー"}のプロフィール画像`}
                 />
                 <AvatarFallback>
@@ -68,7 +77,7 @@ const Header = async () => {
                   {user?.username || "ユーザー"}
                 </SheetTitle>
                 <p className="text-sm text-gray-500">
-                  {user?.emailAddresses[0]?.emailAddress}
+                  {user?.primaryEmailAddress?.emailAddress}
                 </p>
               </div>
             </SheetHeader>
@@ -77,19 +86,29 @@ const Header = async () => {
               <Link
                 href={`/profile/${user?.username}`}
                 className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-100"
+                onClick={handleLinkClick}
               >
                 <UserIcon size={20} />
                 <span>マイページ</span>
               </Link>
 
-              <Link
-                href="/settings"
-                className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-100"
-              >
-                {/* <UserProfile /> */}
-                <SettingsIcon size={20} />
-                <span>設定</span>
-              </Link>
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <button
+                    className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-100 w-full text-left"
+                    onClick={() => {
+                      // This is needed to prevent the Sheet from capturing the event
+                      setIsDialogOpen(true);
+                    }}
+                  >
+                    <SettingsIcon size={20} />
+                    <span>設定</span>
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="max-w-5xl">
+                  <UserProfile routing="hash" />
+                </DialogContent>
+              </Dialog>
             </div>
 
             <SheetFooter className="absolute bottom-6 left-6 right-6">
@@ -97,6 +116,7 @@ const Header = async () => {
                 <Button
                   variant="outline"
                   className="w-full flex items-center justify-center space-x-2"
+                  onClick={handleLinkClick}
                 >
                   <LogOutIcon size={16} />
                   <span>ログアウト</span>
