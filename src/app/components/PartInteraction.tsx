@@ -49,7 +49,9 @@ export default function MeatPartLikeButton({
       }`}
     >
       <Star
-        className={`h-6 w-6 ${isLiked ? "fill-yellow-400" : ""}`}
+        className={`h-6 w-6 hover:bg-slate-200 rounded-md ${
+          isLiked ? "fill-yellow-400" : ""
+        }`}
         strokeWidth={2}
         color={`${isLiked ? "#FFC800" : "black"}`}
       />
