@@ -36,6 +36,7 @@ export default async function Page({ params }: { params: { name: string } }) {
 
   return (
     <div className="md:flex">
+      <PostForm />
       <section className="w-full md:w-2/3 flex flex-col items-center px-3 md:pl-6">
         <div className="bg-white shadow-md rounded mt-4 w-full flex justify-center items-center">
           <ImageComponent src="/cattle_y_head.svg" />
@@ -82,13 +83,9 @@ export default async function Page({ params }: { params: { name: string } }) {
       </section>
       <aside className="w-full md:w-1/3 flex flex-col px-3">
         <div className="pt-3">
-          <h1 className="font-bold m-2 text-teal-950 md:text-xl text-left">
+          <h1 className="font-bold mb-6 m-2 text-teal-950 md:text-xl text-left">
             /焼肉/頭から首/{part.name}
           </h1>
-          <div className="flex space-x-6 mb-8">
-            <PostForm />
-            <BackButton />
-          </div>
           <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
             最近の口コミ
           </h1>

@@ -19,6 +19,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Button } from "./ui/button";
+import { PenSquare } from "lucide-react";
 
 export default function PostForm() {
   const initialState = {
@@ -86,8 +87,13 @@ export default function PostForm() {
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="default" className="px-8 py-5 font-bold bg-rose-600">
-            口コミを投稿
+          <Button
+            variant="default"
+            size="icon"
+            className="fixed left-4 bottom-4 w-16 h-16 rounded-full bg-rose-600 hover:bg-rose-700 shadow-xl z-50"
+          >
+            <PenSquare className="p-0" />
+            <span className="sr-only">口コミを投稿</span>
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[500px]">

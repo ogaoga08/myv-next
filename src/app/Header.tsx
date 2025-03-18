@@ -21,6 +21,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./components/ui/avatar";
 import { Button } from "./components/ui/button";
 import { UserIcon, SettingsIcon, LogOutIcon } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "./components/ui/dialog";
+import PostForm from "./components/PostForm";
 
 const Header = () => {
   const [isSheetOpen, setSheetOpen] = useState(false);
@@ -62,7 +63,7 @@ const Header = () => {
             </Button>
           </SheetTrigger>
           <SheetContent>
-            <SheetHeader className="pb-6">
+            <SheetHeader className="p-6">
               <div className="flex flex-col items-center">
                 <Avatar className="w-24 h-24 mb-4">
                   <AvatarImage
@@ -82,7 +83,10 @@ const Header = () => {
               </div>
             </SheetHeader>
 
-            <div className="space-y-4 mt-6">
+            <div className="space-y-4 mt-4">
+              {/* <div className="flex justify-center items-center mx-auto">
+                <PostForm />
+              </div> */}
               <Link
                 href={`/profile/${user?.username}`}
                 className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-100"
