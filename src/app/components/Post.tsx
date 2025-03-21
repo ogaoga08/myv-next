@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import CommentList from "./CommentList";
 import { ClockIcon } from "./Icons";
 import PostInteraction from "./PostInteraction";
 import Link from "next/link";
