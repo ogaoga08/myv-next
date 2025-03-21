@@ -1,43 +1,34 @@
 import { notFound } from "next/navigation";
-import { fetchMeatPartByEngName } from "@/lib/part/partService";
+import {
+  getMeatPartDetails,
+  getAllMeatPartEngNames,
+} from "@/lib/part/partService";
 import { ImageComponent } from "@/app/components/ImageComponent";
-import { prisma } from "@/lib/prisma";
 import PostList from "@/app/components/PostList";
 import PostForm from "@/app/components/PostForm";
-import BackButton from "@/app/components/BackButton";
 import Rating from "@/app/components/Star";
-import { isUserLikedMeatPart } from "@/lib/actions";
 import MeatPartLikeButton from "@/app/components/PartInteraction";
 
 export default async function Page({ params }: { params: { name: string } }) {
-  // URLパスからパラメータを取得（この場合、nameパラメータは実際にはengNameを表している）
+  // URLパスからパラメータを取得
   const { name } = params;
-
-  // デコードされたパラメータを使用して部位を英語名で検索
   const decodedEngName = decodeURIComponent(name);
-  const part = await fetchMeatPartByEngName(decodedEngName);
+
+  // サービスを使用してデータを取得
+  const meatPartData = await getMeatPartDetails(decodedEngName);
 
   // 部位が見つからない場合は404ページを表示
-  if (!part) {
+  if (!meatPartData) {
     console.log(`Part not found with engName: ${decodedEngName}`);
     return notFound();
   }
 
-  // いいね情報を取得
-  const meatPartWithLikes = await prisma.meatPart.findUnique({
-    where: { id: part.id },
-    include: { likes: true },
-  });
-
-  const isLiked = await isUserLikedMeatPart(part.id);
-  const likeCount = meatPartWithLikes?.likes.length || 0;
-
-  // console.log(`Found part with engName: ${part.engName}, name: ${part.name}`);
+  const { part, isLiked, likeCount } = meatPartData;
 
   return (
-    <div className="md:flex">
+    <div className="xl:flex">
       <PostForm />
-      <section className="w-full md:w-2/3 flex flex-col items-center px-3 md:pl-6">
+      <section className="w-full xl:w-2/3 flex flex-col items-center px-3 xl:pl-6">
         <div className="bg-white shadow-md rounded mt-4 w-full flex justify-center items-center">
           <ImageComponent src="/cattle_y_head.svg" />
         </div>
@@ -98,13 +89,11 @@ export default async function Page({ params }: { params: { name: string } }) {
   );
 }
 
-// 動的なルートパラメータを生成する関数（オプション）
+// 部位ページを静的生成するための動的パラメータを生成
 export async function generateStaticParams() {
-  const parts = await prisma.meatPart.findMany({
-    select: { engName: true },
-  });
+  const engNames = await getAllMeatPartEngNames();
 
-  return parts.map((part) => ({
-    name: part.engName,
+  return engNames.map((engName) => ({
+    name: engName,
   }));
 }
