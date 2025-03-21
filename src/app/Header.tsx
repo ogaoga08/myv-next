@@ -62,7 +62,7 @@ const Header = () => {
               </Avatar>
             </Button>
           </SheetTrigger>
-          <SheetContent>
+          <SheetContent className="max-w-60 md:,max-w-full">
             <SheetHeader className="p-6">
               <div className="flex flex-col items-center">
                 <Avatar className="w-24 h-24 mb-4">
@@ -77,7 +77,7 @@ const Header = () => {
                 <SheetTitle className="text-xl">
                   {user?.username || "ユーザー"}
                 </SheetTitle>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 px-2">
                   {user?.primaryEmailAddress?.emailAddress}
                 </p>
               </div>
@@ -89,7 +89,7 @@ const Header = () => {
               </div> */}
               <Link
                 href={`/profile/${user?.username}`}
-                className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-100"
+                className="flex items-center space-x-2 xl:px-3 py-2 rounded-lg hover:bg-gray-100"
                 onClick={handleLinkClick}
               >
                 <UserIcon size={20} />
@@ -99,7 +99,7 @@ const Header = () => {
               <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
                   <button
-                    className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-100 w-full text-left"
+                    className="flex items-center space-x-2 xl:px-3 py-2 rounded-lg hover:bg-gray-100 w-full text-left"
                     onClick={() => {
                       // This is needed to prevent the Sheet from capturing the event
                       setIsDialogOpen(true);
@@ -109,7 +109,7 @@ const Header = () => {
                     <span>設定</span>
                   </button>
                 </DialogTrigger>
-                <DialogContent className="max-w-5xl">
+                <DialogContent className="max-w-5xl max-h-full">
                   <UserProfile routing="hash" />
                 </DialogContent>
               </Dialog>
