@@ -18,8 +18,8 @@ export default async function Home({
   const query = searchParams?.query || "";
 
   return (
-    <div className="md:flex">
-      <section className="w-full md:w-2/3 flex flex-col items-center px-3 md:pl-6">
+    <div className="xl:flex">
+      <section className="w-full xl:w-2/3 flex flex-col items-center px-3 xl:pl-6">
         <div className="bg-white shadow-md rounded mt-4 w-full flex justify-center items-center">
           <ImageComponent src="/cattle.svg" />
         </div>
@@ -27,7 +27,7 @@ export default async function Home({
           <PostForm />
         </div>
       </section>
-      <aside className="w-full md:w-1/3 flex flex-col px-3 mt-4">
+      <aside className="w-full xl:w-1/3 flex flex-col px-3 mt-4">
         <div className="">
           <Search placeholder="部位名・キーワードで検索..." />
           <PartsTable query={query} />
