@@ -8,6 +8,7 @@ import { revalidatePath, revalidateTag } from "next/cache";
 type State = {
   error?: string | undefined;
   success: boolean;
+  errorId?: number;
 };
 
 //　アロー関数ではなくfunctionで書きましょう(シリアライズエラーを回避するため)
@@ -23,7 +24,7 @@ export async function addPostAction(
     }
 
     const nameText = formData.get("name") as string; //nullは許容されない
-    const nameTextSchema = z.string().nonempty("部位名を入力してください");
+    const nameTextSchema = z.string().nonempty("部位名を選択してください");
 
     const validatedNameText = nameTextSchema.parse(nameText);
 
@@ -37,7 +38,7 @@ export async function addPostAction(
     const contentText = formData.get("content") as string; //nullは許容されない
     const contentTextSchema = z
       .string()
-      .min(2, "本文を入力してください")
+      .min(2, "本文は2文字以上で入力してください")
       .max(300, "本文は300字以内で入力してください");
 
     const validatedContentText = contentTextSchema.parse(contentText);

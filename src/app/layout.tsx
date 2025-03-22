@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import Loading from "./loading";
 import { Noto_Sans_JP } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "./components/ui/toaster";
 
 const fontNoto = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -31,7 +32,10 @@ export default function RootLayout({
           <div className="bg-slate-200 text-slate-800 flex flex-col min-h-screen">
             <Header />
             <main className="flex-grow pt-20">
-              <Suspense fallback={<Loading />}>{children}</Suspense>
+              <Suspense fallback={<Loading />}>
+                {children}
+                <Toaster />
+              </Suspense>
             </main>
             <Footer />
           </div>

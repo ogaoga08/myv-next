@@ -1,8 +1,6 @@
 "use client";
 
-import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
-import { Input } from "./ui/input";
-import { SetStateAction, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { addPostAction } from "@/lib/actions";
 import { SubmitButton } from "./SubmitButton";
 import { useFormState } from "react-dom";
@@ -20,11 +18,13 @@ import {
 } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { PenSquare } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function PostForm() {
   const initialState = {
     error: undefined,
     success: false,
+    errorId: undefined,
   };
   // const [error, setError] = useState<string | undefined>("");
   const formRef = useRef<HTMLFormElement>(null); //入力欄のリセット用
@@ -53,8 +53,13 @@ export default function PostForm() {
     const result = await addPostAction(prevState, formData);
 
     if (result.success) {
-      // Close dialog on success
       setOpen(false);
+    } else if (result.error) {
+      // エラーにタイムスタンプを追加して一意性を持たせる
+      return {
+        ...result,
+        errorId: Date.now(),
+      };
     }
 
     return result;
@@ -83,6 +88,18 @@ export default function PostForm() {
     setSelectedName("");
   }
 
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (state.error) {
+      toast({
+        variant: "destructive",
+        title: "エラーが発生しました",
+        description: state.error,
+      });
+    }
+  }, [state.errorId, toast]); // errorIdの変化を監視
+
   return (
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
@@ -90,7 +107,7 @@ export default function PostForm() {
           <Button
             variant="default"
             size="icon"
-            className="fixed left-4 bottom-4 w-16 h-16 rounded-full bg-rose-600 hover:bg-rose-700 shadow-xl z-50"
+            className="fixed left-4 bottom-7 w-16 h-16 rounded-full bg-rose-600 hover:bg-rose-700 shadow-xl z-50"
           >
             <PenSquare className="p-0" />
             <span className="sr-only">口コミを投稿</span>
@@ -142,11 +159,11 @@ export default function PostForm() {
               </div>
             </div>
 
-            {state.error && (
+            {/* {state.error && (
               <p className="text-destructive font-medium text-sm">
                 {state.error}
               </p>
-            )}
+            )} */}
 
             <DialogFooter>
               <SubmitButton />
