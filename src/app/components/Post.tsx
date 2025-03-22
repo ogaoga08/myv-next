@@ -21,7 +21,7 @@ export default function Post({ post }: any) {
       </div>
       <div className="px-1">
         <div className="mb-2">
-          <p className="text-slate-600 font-light">#{post.name}</p>
+          <p className="text-slate-600 font-medium">#{post.name}</p>
         </div>
         <div className="mb-4 px-1">
           <Rating star={post.rating} readOnly size={20} />
