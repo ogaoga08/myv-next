@@ -31,8 +31,8 @@ export default async function PostList({
       {posts && posts.length > 0 ? (
         posts.map((post) => <Post key={post.id} post={post} />)
       ) : (
-        <h3 className="text-center font-bold m-5">
-          投稿された口コミはありません！
+        <h3 className="text-center xl:mt-64 xl:text-xl font-bold m-5">
+          投稿された口コミはありません
         </h3>
       )}
     </div>
