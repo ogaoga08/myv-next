@@ -181,7 +181,7 @@ export default async function ProfilePage({ params }: Props) {
       <aside className="w-full md:w-1/3 flex flex-col px-3">
         <div className="pt-3">
           <h1 className="font-bold m-2 text-gray-900 md:text-2xl text-xl text-left">
-            {isCurrentUser ? `口コミ` : "{user.username}の口コミ"}
+            {isCurrentUser ? `口コミ` : `${user.username}の口コミ`}
           </h1>
           <div className="flex-1 max-h-screen shadow-inner rounded-md overflow-y-auto">
             <PostList username={username} />
