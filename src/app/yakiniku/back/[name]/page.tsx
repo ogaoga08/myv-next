@@ -72,7 +72,7 @@ export default async function Page({ params }: { params: { name: string } }) {
           </ul>
         </div>
       </section>
-      <aside className="w-full md:w-1/3 flex flex-col px-3">
+      <aside className="w-full xl:w-1/3 flex flex-col px-3">
         <div className="pt-3">
           <h1 className="font-bold mb-6 m-2 text-teal-950 md:text-xl text-left">
             /焼肉/背中/{part.name}
