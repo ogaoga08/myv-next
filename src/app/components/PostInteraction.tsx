@@ -14,36 +14,19 @@ interface LikeState {
 
 const PostInteraction = ({
   postId,
-  // likes,
   initialLikes,
-  // initialIsLiked,
-  commentNumber,
 }: {
   postId: string;
-  // likes: string[];
   initialLikes: string[];
-  // initialIsLiked: boolean;
   commentNumber: number;
 }) => {
-  //   const [likeState, setLikeState] = useState({
-  //     likeCount: likes.length,
-  //     isLiked: userId ? likes.includes(userId) : false,
-  //   });
-
   const { userId } = useAuth();
+  const { toast } = useToast();
 
   const initialState: LikeState = {
     count: initialLikes.length,
     isLiked: userId ? initialLikes.includes(userId) : false,
   };
-
-  // const initialState = {
-
-  //   likes,
-  //   error: undefined,
-  // };
-
-  // const [state, formAction] = useFormState(likeAction, initialState);
 
   // 楽観的UI更新(非同期処理の実行中、一時的にコピーを表示させるReactフック)
   const [optimisticLike, addOptimisticLike] = useOptimistic<LikeState, void>(
@@ -56,14 +39,38 @@ const PostInteraction = ({
     })
   );
 
-  const { toast } = useToast();
-
   const handleLikeSubmit = async (formData: FormData) => {
+    // 楽観的UIの更新を適用する前に、クライアントサイドでもログイン状態を確認
+    if (!userId) {
+      toast({
+        variant: "destructive",
+        title: "エラーが発生しました",
+        description: "いいねするにはログインが必要です。",
+      });
+      return;
+    }
+
+    // 楽観的UIの更新を適用
     addOptimisticLike();
 
     try {
-      await likeAction(formData);
+      const result = await likeAction(formData);
+
+      // likeActionの結果を確認
+      if (result && result.error) {
+        // エラーメッセージをトーストで表示
+        toast({
+          variant: "destructive",
+          title: "エラーが発生しました",
+          description: result.error,
+        });
+
+        // エラー発生時に楽観的UIの更新を元に戻す処理が必要
+        // 現在のuseOptimisticの実装では直接戻せないため、
+        // ページのリロードやより複雑な状態管理が必要
+      }
     } catch (err: any) {
+      // 例外が発生した場合
       toast({
         variant: "destructive",
         title: "エラーが発生しました",
@@ -74,10 +81,7 @@ const PostInteraction = ({
 
   return (
     <div className="flex items-center">
-      <form
-        // action={formAction}
-        action={handleLikeSubmit}
-      >
+      <form action={handleLikeSubmit}>
         <input type="hidden" name="postId" value={postId} />
         <Button variant="ghost" size="icon" className="hover:bg-slate-200">
           <Heart
@@ -97,13 +101,6 @@ const PostInteraction = ({
       >
         {optimisticLike.count}
       </span>
-      {/* <Button variant="ghost" size="icon">
-        <MessageCircleIcon className="h-5 w-5 text-muted-foreground" />
-      </Button>
-      <span className="text-muted-foreground">{commentNumber}</span>
-      <Button variant="ghost" size="icon">
-        <Share2Icon className="h-5 w-5 text-muted-foreground" />
-      </Button> */}
     </div>
   );
 };
