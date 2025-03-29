@@ -159,8 +159,8 @@ export const meatPartLikeAction = async (formData: FormData) => {
         },
       });
 
-      revalidatePath("/meat-parts");
-      revalidatePath(`/meat-parts/${meatPartId}`);
+      // revalidatePath("/meat-parts");
+      // revalidatePath(`/meat-parts/${meatPartId}`);
     } else {
       // お気に入りが存在しない場合は新規作成
       await prisma.meatLike.create({
@@ -170,8 +170,8 @@ export const meatPartLikeAction = async (formData: FormData) => {
         },
       });
 
-      revalidatePath("/meat-parts");
-      revalidatePath(`/meat-parts/${meatPartId}`);
+      // revalidatePath("/meat-parts");
+      // revalidatePath(`/meat-parts/${meatPartId}`);
     }
 
     return { success: true };

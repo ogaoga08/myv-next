@@ -43,8 +43,11 @@ const Header = () => {
         </h1>
       </div>
       <SignedOut>
-        <Link href={"/sign-in"} className="font-bold">
-          サインイン
+        <Link
+          href={"/sign-in"}
+          className="p-2 rounded-md font-bold bg-red-700 hover:bg-red-800 transition duration-200"
+        >
+          ログイン
         </Link>
       </SignedOut>
       <SignedIn>
