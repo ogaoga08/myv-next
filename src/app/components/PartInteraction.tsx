@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Heart, Star, StarIcon } from "lucide-react";
+import { Star } from "lucide-react";
 import { meatPartLikeAction } from "@/lib/actions";
+import { useToast } from "@/hooks/use-toast";
 
 interface MeatPartLikeButtonProps {
   meatPartId: string;
@@ -18,6 +19,7 @@ export default function MeatPartLikeButton({
   const [isLiked, setIsLiked] = useState(initialIsLiked);
   const [count, setCount] = useState(likeCount);
   const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   const handleLike = async () => {
     setIsLoading(true);
@@ -27,14 +29,28 @@ export default function MeatPartLikeButton({
 
     try {
       const result = await meatPartLikeAction(formData);
+
       if (result.success) {
         // いいねの状態を反転
         setIsLiked(!isLiked);
         // いいねの数を更新
         setCount((prev) => (isLiked ? prev - 1 : prev + 1));
+      } else if (result.error) {
+        // エラーメッセージをトーストで表示
+        toast({
+          variant: "destructive",
+          title: "エラーが発生しました",
+          description: result.error,
+        });
       }
     } catch (error) {
       console.error("Error toggling like:", error);
+      // 例外が発生した場合もトーストで通知
+      toast({
+        variant: "destructive",
+        title: "エラーが発生しました",
+        description: "予期せぬエラーが発生しました。再度お試しください。",
+      });
     } finally {
       setIsLoading(false);
     }

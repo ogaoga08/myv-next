@@ -21,7 +21,9 @@ export default function Post({ post }: any) {
       </div>
       <div className="px-1">
         <div className="mb-2">
+          {/* <Link href={`${post.name}`}> */}
           <p className="text-slate-600 font-medium">#{post.name}</p>
+          {/* </Link> */}
         </div>
         <div className="mb-4 px-1">
           <Rating star={post.rating} readOnly size={20} />

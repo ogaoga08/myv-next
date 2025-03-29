@@ -93,7 +93,7 @@ export const likeAction = async (
   if (!userId) {
     return {
       likes: [],
-      error: "アカウントが認証されていません(User is not authenticated)",
+      error: "ログインしてください(User is not authenticated)",
     };
   }
 
@@ -137,7 +137,7 @@ export const meatPartLikeAction = async (formData: FormData) => {
   if (!userId) {
     return {
       likes: [],
-      error: "アカウントが認証されていません(User is not authenticated)",
+      error: "ログインしてください(User is not authenticated)",
     };
   }
 

@@ -1,17 +1,11 @@
 "use client";
 
-import React, {
-  startTransition,
-  useId,
-  useOptimistic,
-  useState,
-  useTransition,
-} from "react";
-import { HeartIcon } from "./Icons";
+import React, { useOptimistic } from "react";
 import { Button } from "./ui/button";
 import { likeAction } from "@/lib/actions";
 import { useAuth } from "@clerk/nextjs";
-import { Heart, HeartPulseIcon } from "lucide-react";
+import { Heart } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface LikeState {
   count: number;
@@ -54,7 +48,6 @@ const PostInteraction = ({
   // 楽観的UI更新(非同期処理の実行中、一時的にコピーを表示させるReactフック)
   const [optimisticLike, addOptimisticLike] = useOptimistic<LikeState, void>(
     initialState,
-    //updateFn
     (currentState) => ({
       count: currentState.isLiked
         ? currentState.count - 1
@@ -63,13 +56,19 @@ const PostInteraction = ({
     })
   );
 
+  const { toast } = useToast();
+
   const handleLikeSubmit = async (formData: FormData) => {
     addOptimisticLike();
 
     try {
       await likeAction(formData);
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      toast({
+        variant: "destructive",
+        title: "エラーが発生しました",
+        description: "予期せぬエラーが発生しました。再度お試しください。",
+      });
     }
   };
 

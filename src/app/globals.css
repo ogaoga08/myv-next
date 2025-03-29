@@ -7,7 +7,7 @@
 } */
 
 html {
-  background-color: #b91c1c; /* Tailwindのbg-red-700に対応する色 */
+  background-color: #b91c1c;
   padding-top: env(safe-area-inset-top);
 }
 
