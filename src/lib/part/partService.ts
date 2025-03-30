@@ -61,3 +61,17 @@ export async function getAllMeatPartEngNames() {
 
   return parts.map((part) => part.engName);
 }
+
+export async function fetchMeatPartByName(name: string) {
+  try {
+    const meatPart = await prisma.meatPart.findFirst({
+      where: {
+        name: name,
+      },
+    });
+    return meatPart;
+  } catch (error) {
+    console.error(`Error fetching MeatPart with name ${name}:`, error);
+    return null;
+  }
+}
