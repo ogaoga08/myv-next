@@ -21,7 +21,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "./components/ui/avatar";
 import { Button } from "./components/ui/button";
 import { UserIcon, SettingsIcon, LogOutIcon } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "./components/ui/dialog";
-import PostForm from "./components/PostForm";
 
 const Header = () => {
   const [isSheetOpen, setSheetOpen] = useState(false);

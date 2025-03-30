@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import ChoiceButton from "../components/ChoiceButton";
 import { ImageComponent } from "../components/ImageComponent";
 
