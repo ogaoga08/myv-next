@@ -2,6 +2,8 @@
 
 好きな"部位"を探せる焼肉データベースです。
 
+[myv](https://myv-meat.vercel.app)
+
 ````
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).

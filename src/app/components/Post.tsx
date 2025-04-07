@@ -47,7 +47,7 @@ export default function Post({ post }: any) {
         </div>
         <div className="flex items-center gap-2 text-muted-foreground">
           <ClockIcon className="h-5 w-5" />
-          <span>{post.createdAt.toLocaleString()}</span>
+          <span>{post.createdAt.toLocaleString("sv-SE")}</span>
         </div>
       </div>
       {/* {post.comments && <CommentList replies={post.replies} />} */}
